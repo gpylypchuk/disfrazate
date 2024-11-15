@@ -2,58 +2,100 @@
 #Librerias a usar:Django, PyMySQL, bcrypt(para encriptar contraseñas antes de mandarlas a la base de datos), Pytest, Pillow(para manejar imagenes), etc.
 import pymysql
 
-# Configuración de conexión a la base de datos
-def conectar_bd():
-    return pymysql.connect(host="127.0.0.1",port=3306,user="root",password="1234",database='disfraces')
+''' FUNCIONES GENERALES '''
+# Funcion para obtener informacion de los disfraces
+def obtener_disfraz(idDisfraz):
+    # Consulta para obtener el disfraz
+    query = 'SELECT * FROM stock WHERE idDisfraz = %s;'
+    # Ejecutar la consulta y pasar los parámetros de manera segura
+    cursor.execute(query, (idDisfraz,))
+    # Obtener el resultado
+    datos_disfraz = cursor.fetchone()  # Usar fetchone() para una sola fila
+    # Verifico si se encontro el disfraz
+    if datos_disfraz:
+        print(f"Disfraz encontrado: {datos_disfraz}")
+    else:
+        print("No se encontró el disfraz con ese ID.")
+    # Devuelvo los datos
+    return datos_disfraz
+
+# Funcion para pedir numeros enteros con manejo de errores
+def pedir_entero(instrucciones):
+    while True:
+        try:
+            numero = int(input(instrucciones))
+            return numero
+        except ValueError:
+            print("Eso no es un valor válido. Por favor, intenta de nuevo.")
+
+''' FUNCIONES ESPECIFICAS '''
+# Función para que el cliente compre un disfraz
+def comprar_disfraz():  
+    while True:
+        # Ingreso del ID del disfraz
+        idDisfraz = pedir_entero('Ingrese el id del disfraz: ')
+        # Obtengo los datos del disfraz
+        datos_disfraz = obtener_disfraz(idDisfraz)
+        cantidad,precioVenta = int(datos_disfraz[2]),datos_disfraz[3]
+        
+        # Verificamos el stock del disfraz
+        if cantidad==0:
+            print("No hay mas stock de ese disfraz")
+            break
+         
+        # Precio a pagar
+        print(f"El precio a pagar es {precioVenta}")    
+        print("Venta realizada con exito!")
+        
+        # Modificamos la cantidad de disfraces
+        try:
+            query = "UPDATE stock SET cantidad = %s WHERE idDisfraz = %s;"
+            # Ejecutar la consulta pasando los parámetros
+            cursor.execute(query,(cantidad-1,idDisfraz))
+            # Realizar commit para guardar los cambios en la base de datos
+            connection.commit()
+            print("Cantidad actualizada con éxito!")
+        except:
+            # ROLLBACK --> Vuelve atras y no efectua ningun cambio
+            connection.rollback()
+            print("No se pudo actualizar")
+        finally:
+            break
     
-# Actualización de stock y ganancias
-def actualizar_stock_y_ganancias():
-    # Aquí actualizarías el stock y ganancias en la base de datos
-    pass
-
-# Funciones específicas
-def comprar_disfraz(): #Funcion para que el cliente compre un disfraz
-    print("Función para comprar un disfraz.")
-    # Conexión y lógica de compra
-    conexion = conectar_bd()
-    try:
-        with conexion.cursor() as cursor:
-            # Ejemplo de consulta: Actualizar stock y ganancias
-            sql = "UPDATE disfraces SET stock = stock - 1 WHERE id = %s"
-            cursor.execute(sql, (1,))  # Cambiar el ID por el seleccionado
-            sql = "UPDATE ganancias SET total = total + %s WHERE id = 1"
-            cursor.execute(sql, (100,))  # Cambiar 100 por el precio del disfraz
-            conexion.commit()
-    finally:
-        conexion.close()
-
+# Función para que el cliente alquile un disfraz
 def alquilar_disfraz():
-    print("Función para alquilar un disfraz.")
-    # Conexión y lógica de alquiler
-    conexion = conectar_bd()
-    try:
-        with conexion.cursor() as cursor:
-            # Ejemplo de consulta: Actualizar disponibilidad y ganancias
-            sql = "UPDATE disfraces SET disponible = 0 WHERE id = %s"
-            cursor.execute(sql, (1,))  # Cambiar el ID por el seleccionado
-            sql = "UPDATE ganancias SET total = total + %s WHERE id = 1"
-            cursor.execute(sql, (50,))  # Cambiar 50 por el precio del alquiler
-            conexion.commit()
-    finally:
-        conexion.close()
-
-def devolver_disfraz():
-    print("Función para devolver un disfraz.")
-    # Conexión y lógica de devolución
-    conexion = conectar_bd()
-    try:
-        with conexion.cursor() as cursor:
-            # Ejemplo de consulta: Actualizar disponibilidad
-            sql = "UPDATE disfraces SET disponible = 1 WHERE id = %s"
-            cursor.execute(sql, (1,))  # Cambiar el ID por el seleccionado
-            conexion.commit()
-    finally:
-        conexion.close()
+    while True:
+        # Ingreso del ID del disfraz
+        idDisfraz = pedir_entero('Ingrese el id del disfraz: ')
+        # Obtengo los datos del disfraz
+        datos_disfraz = obtener_disfraz(idDisfraz)
+        cantidad,precio_alquilerXdia = int(datos_disfraz[2]),int(datos_disfraz[4])
+        
+        # Verificamos el stock del disfraz
+        if cantidad==0:
+            print("No hay mas stock de ese disfraz")
+            break
+        
+        # Calculamos el precio del alquiler por la cantidad de dias
+        dias = pedir_entero("Ingrese la cantidad de dias que quiere alquilar el disfraz: ")
+        precio_alquiler_total = dias * precio_alquilerXdia
+        print(f'El precio total a pagar es {precio_alquiler_total}')
+        print("Alquiler realizado con exito!")
+        
+        # Modificamos la cantidad de disfraces
+        try:
+            query = "UPDATE stock SET cantidad = %s WHERE idDisfraz = %s;"
+            # Ejecutar la consulta pasando los parámetros
+            cursor.execute(query,(cantidad-1,idDisfraz))
+            # Realizar commit para guardar los cambios en la base de datos
+            connection.commit()
+            print("Cantidad actualizada con éxito.")
+        except:
+            # ROLLBACK --> Vuelve atras y no efectua ningun cambio
+            connection.rollback()
+            print("No se pudo actualizar")
+        finally:
+            break
 
 # Menú principal
 def menu_principal():
@@ -61,8 +103,7 @@ def menu_principal():
         print("\n--- Menú Principal ---")
         print("1. Comprar un disfraz")
         print("2. Alquilar un disfraz")
-        print("3. Devolver un disfraz")
-        print("4. Salir")
+        print("3. Salir")
         
         try:
             opcion = int(input("Elija una opción: "))
@@ -75,8 +116,6 @@ def menu_principal():
         elif opcion == 2:
             alquilar_disfraz()
         elif opcion == 3:
-            devolver_disfraz()
-        elif opcion == 4:
             print("Gracias por utilizar el sistema. ¡Hasta pronto!")
             break
         else:
@@ -84,4 +123,10 @@ def menu_principal():
 
 # Punto de entrada del programa
 if __name__ == "__main__":
-    menu_principal()
+    # Configuración de conexión a la base de datos
+    connection = pymysql.connect(host="127.0.0.1",port=3306,user="root",password="1234",database='disfraces')
+    cursor = connection.cursor() 
+    menu_principal()   
+    # Cerrar la conexión
+    connection.close()  
+
