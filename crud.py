@@ -55,33 +55,33 @@ def devolver_disfraz():
     finally:
         conexion.close()
 
-# Menú principal
-def menu_principal():
-    while True:
-        print("\n--- Menú Principal ---")
-        print("1. Comprar un disfraz")
-        print("2. Alquilar un disfraz")
-        print("3. Devolver un disfraz")
-        print("4. Salir")
+# # Menú principal
+# def menu_principal():
+#     while True:
+#         print("\n--- Menú Principal ---")
+#         print("1. Comprar un disfraz")
+#         print("2. Alquilar un disfraz")
+#         print("3. Devolver un disfraz")
+#         print("4. Salir")
         
-        try:
-            opcion = int(input("Elija una opción: "))
-        except ValueError:
-            print("Por favor, ingrese un número válido.")
-            continue
+#         try:
+#             opcion = int(input("Elija una opción: "))
+#         except ValueError:
+#             print("Por favor, ingrese un número válido.")
+#             continue
 
-        if opcion == 1:
-            comprar_disfraz()
-        elif opcion == 2:
-            alquilar_disfraz()
-        elif opcion == 3:
-            devolver_disfraz()
-        elif opcion == 4:
-            print("Gracias por utilizar el sistema. ¡Hasta pronto!")
-            break
-        else:
-            print("Opción no válida. Intente de nuevo.")
+#         if opcion == 1:
+#             comprar_disfraz()
+#         elif opcion == 2:
+#             alquilar_disfraz()
+#         elif opcion == 3:
+#             devolver_disfraz()
+#         elif opcion == 4:
+#             print("Gracias por utilizar el sistema. ¡Hasta pronto!")
+#             break
+#         else:
+#             print("Opción no válida. Intente de nuevo.")
 
-# Punto de entrada del programa
-if __name__ == "__main__":
-    menu_principal()
+# # Punto de entrada del programa
+# if __name__ == "__main__":
+#     menu_principal()
