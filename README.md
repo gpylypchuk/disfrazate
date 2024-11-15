@@ -5,16 +5,16 @@ Venta y Alquiler de disfraces
 ```bash
 disfrazate/
 ├── server/                   # Código y configuración del servidor backend
-│   ├── app/                  # Aplicación principal
-│   │   ├── controllers/      # Lógica para las rutas (controladores)
-│   │   ├── models/           # Modelos de base de datos
-│   │   ├── routes/           # Definición de rutas (endpoints)
-│   │   ├── services/         # Servicios o lógica de negocio
-│   │   ├── utils/            # Utilidades o helpers
-│   │   └── __init__.py       # Archivo de inicialización de la aplicación
-│   ├── config/               # Configuración de entorno
-│   │   ├── database.py       # Conexión a la base de datos
-│   │   └── .env              # Variables de entorno
+│   ├── main.py               # Punto de entrada de la aplicación
+│   ├── models.py             # Definición de las tablas y modelos
+│   ├── schemas.py            # Esquemas de Pydantic para validación
+│   ├── database.py           # Configuración de la base de datos
+│   ├── crud.py               # Operaciones CRUD
+│   ├── routers/
+│   │   ├── clientes.py       # Rutas para gestionar clientes
+│   │   ├── alquileres.py     # Rutas para gestionar alquileres
+│   │   └── disfraces.py      # Rutas para gestionar disfraces
+│   ├── __init__.py
 │   ├── tests/                # Pruebas de backend
 │   ├── requirements.txt      # Dependencias del backend
 │   └── README.md             # Documentación del backend
