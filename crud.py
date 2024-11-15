@@ -12,7 +12,7 @@ def actualizar_stock_y_ganancias():
     pass
 
 # Funciones específicas
-def comprar_disfraz():
+def comprar_disfraz(): #Funcion para que el cliente compre un disfraz
     print("Función para comprar un disfraz.")
     # Conexión y lógica de compra
     conexion = conectar_bd()
