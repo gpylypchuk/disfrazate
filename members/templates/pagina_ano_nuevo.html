@@ -1,0 +1,110 @@
+{% load static %}
+<!-- Esto es un comentario -->
+<!-- con target="__blank" se abre en otra pagina" -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="./media/logoo.jpg">
+  <link rel="stylesheet" href="{% static 'members/css/style.css' %}">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+  <title>Disfrazate</title>
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Disfrazate</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Base de datos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Metodos de pago</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-disabled="true">No se ACEPTAN DEVOLUCIONES</a>
+                        </li>
+                    </ul>
+                    <!-- Botón LOG IN alineado a la derecha -->
+                    <div class="ms-auto">
+                        <a href="#" class="btn btn-primary">LOG IN</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
+   </header>
+
+  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" style="height: 200px;">
+    <div class="carousel-inner" style="height: 100%;">
+      <div class="carousel-item active">
+        <img src="./media/logoo.jpg" class="d-block w-100" alt="..." style="height: 200px; object-fit: cover;">
+      </div>
+      <div class="carousel-item">
+        <img src="./media/imagen2.jpg" class="d-block w-100" alt="..." style="height: 200px; object-fit: cover;">
+      </div>
+      <div class="carousel-item">
+        <img src="./media/imagen3.jpg" class="d-block w-100" alt="..." style="height: 200px; object-fit: cover;">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <h1 style="text-align: center;">Catalogo de Disfraces</h1>
+
+  <div class="card-group">
+    <div class="card" style="background-color: transparent;">
+      <img src="./media/halloween.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <p class="card-text texto">Disfraces HALLOWEEN</p>
+      </div>
+    </div>
+    <div class="card" style="background-color: transparent;">
+      <img src="./media/halloween.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <p class="card-text texto">Disfraces NAVIDAD</p>
+      </div>
+    </div>
+    <div class="card" style="background-color: transparent;">
+      <a>
+        <img src="./media/halloween.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text texto">Disfraces ANIO NUEVO</p>
+        </div>
+      </a>  
+    </div>
+  </div>
+
+  <footer>
+
+  </footer>
+
+
+</body>
+
+</html>

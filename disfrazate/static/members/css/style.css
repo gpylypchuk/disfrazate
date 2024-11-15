@@ -1,0 +1,13 @@
+#customCarousel {
+    height: 400px; /* Ajusta el valor según tu preferencia */
+  }
+  
+  #customCarousel .carousel-inner {
+    height: 100%; /* Asegura que las imágenes llenen el contenedor */
+  }
+  
+  #customCarousel .carousel-item img {
+    object-fit: cover; /* Hace que las imágenes se ajusten sin deformarse */
+    height: 100%;
+    width: 100%;
+  }
