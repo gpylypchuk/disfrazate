@@ -1,6 +1,7 @@
 #Implementar Librerías básicas para la gestión del proyecto ABM -alta-baja-modificacion
 #Librerias a usar:Django, PyMySQL, bcrypt(para encriptar contraseñas antes de mandarlas a la base de datos), Pytest, Pillow(para manejar imagenes), etc.
 import pymysql
+import re 
 
 ''' FUNCIONES GENERALES '''
 # Funcion para obtener informacion de los disfraces
@@ -27,6 +28,55 @@ def pedir_entero(instrucciones):
             return numero
         except ValueError:
             print("Eso no es un valor válido. Por favor, intenta de nuevo.")
+
+# Funcion para solicitar el dni
+def solicitar_dni():
+    while True:
+        # Solicitar el DNI
+        dni = input("Introduce tu DNI (solo números, 8 caracteres): ")
+        
+        # Validar que el DNI tenga exactamente 8 dígitos y que solo contenga números
+        if len(dni) == 8 and dni.isdigit():
+            return dni  # Si el DNI es válido, lo devolvemos y salimos
+        else:
+            print("DNI no válido. Asegúrate de que tenga exactamente 8 dígitos y contenga solo números.")
+
+# Funcion para solicitar el email
+def solicitar_email():
+    while True:
+        # Solicitar el email
+        email = input("Introduce tu email: ")
+        
+        # Validar el formato del email usando expresión regular
+        patron_email = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+        if re.match(patron_email, email):
+            return email  # Si el email es válido, lo devolvemos y salimos
+        else:
+            print("Email no válido. Asegúrate de que tenga un formato correcto (ejemplo@dominio.com).")
+
+# Funcion para solicitar el telefono
+def solicitar_telefono():
+    while True:
+        telefono = input("Ingrese su número de teléfono (solo dígitos, 10 caracteres): ")
+        
+        # Validar que el teléfono contenga solo dígitos y tenga 10 caracteres
+        if re.match(r'^\d{10}$', telefono):
+            return telefono
+        else:
+            print("Número de teléfono inválido. Asegúrese de ingresar 10 dígitos.")
+
+# Funcion para solicitar la contraseña
+def solicitar_contraseña():
+    while True:    
+        # Solicitar la contraseña
+        password = input("Introduce tu contraseña (mínimo 8 caracteres, con letras y números): ")
+        
+        # Validar que la contraseña tenga al menos 8 caracteres, incluyendo letras y números
+        if len(password) >= 8 and any(c.isdigit() for c in password) and any(c.isalpha() for c in password):
+            return password  # Si la contraseña es válida, la devolvemos y salimos
+        else:
+            print("Contraseña no válida. Asegúrate de que tenga al menos 8 caracteres y contenga tanto letras como números.")
+
 
 ''' FUNCIONES ESPECIFICAS '''
 # Función para que el cliente compre un disfraz
@@ -97,8 +147,59 @@ def alquilar_disfraz():
         finally:
             break
 
-# Menú principal
-def menu_principal():
+# Funcion para dar de alta un nuevo usuario
+def nuevo_usuario():
+    # Solicitamos y validamos los datos del usuario
+    nombre = input("Introduce tu nombre: ")
+    apellido = input("Introduce tu apellido: ")
+    dni = solicitar_dni()
+    email = solicitar_email()
+    telefono = solicitar_telefono()
+    password = solicitar_contraseña()
+    
+    # GUARDAMOS LOS DATOS EN LA BD
+    try:
+        # Consulta SQL con parámetros para evitar inyección SQL
+        query = """
+            INSERT INTO Usuarios (dni, name, apellidos, email, telefono, contrasena) 
+            VALUES (%s, %s, %s, %s, %s, %s)
+        """
+        # Ejecutar la consulta con los valores correspondientes
+        cursor.execute(query, (dni, nombre, apellido, email, telefono, password))
+        connection.commit()
+    except Exception as e:
+        # Si ocurre un error, se hace rollback
+        connection.rollback()
+        print(f"Error al insertar los datos: {e}")
+
+''' MENU PRINCIPAL COMPRA Y USUARIO'''
+def menu_principal_usuario():
+    while True:
+        print("\n--- Menú Principal Usuario ---")
+        print("1. Crear nueva cuenta / Registrarme")
+        print("2. Iniciar Sesion")
+        print("3. Eliminar Cuenta")
+        print("4. Salir")
+        
+        try:
+            opcion = int(input("Elija una opción: "))
+        except ValueError:
+            print("Por favor, ingrese un número válido.")
+            continue
+
+        if opcion == 1:
+            nuevo_usuario()
+        elif opcion == 2:
+            print("Iniciar sesion")
+        elif opcion == 3:
+            print("Eliminamos cuenta")
+        elif opcion == 4:
+            print("Gracias por utilizar el sistema. ¡Hasta pronto!")
+            break
+        else:
+            print("Opción no válida. Intente de nuevo.")
+
+def menu_principal_compra():
     while True:
         print("\n--- Menú Principal ---")
         print("1. Comprar un disfraz")
@@ -121,12 +222,13 @@ def menu_principal():
         else:
             print("Opción no válida. Intente de nuevo.")
 
+
 # Punto de entrada del programa
 if __name__ == "__main__":
     # Configuración de conexión a la base de datos
     connection = pymysql.connect(host="127.0.0.1",port=3306,user="root",password="1234",database='disfraces')
     cursor = connection.cursor() 
-    menu_principal()   
+    menu_principal_usuario()
+    menu_principal_compra()   
     # Cerrar la conexión
     connection.close()  
-
