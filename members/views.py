@@ -18,11 +18,31 @@ def pagina_navidad(request):
     templateNav=loader.get_template('pagina_navidad.html')
     return HttpResponse(templateNav.render())
 
-# Vista para la página de Año Nuevo
-def pagina_anio_nuevo(request):
-    templateNue=loader.get_template('pagina_ano_nuevo.html')
-    return HttpResponse(templateNue.render())
+# Vista para la página de retro
+def pagina_retro(request):
+    templateRet=loader.get_template('pagina_retro.html')
+    return HttpResponse(templateRet.render())
+
+# Vista para la página de Halloween
+def pagina_cosplay(request):
+    templateCos=loader.get_template('pagina_cosplay.html')
+    return HttpResponse(templateCos.render())
+
+# Vista para la página de Navidad
+def pagina_heroes(request):
+    templateHer=loader.get_template('pagina_heroes.html')
+    return HttpResponse(templateHer.render())
+
+# Vista para la página de retro
+def pagina_princesas(request):
+    templatePrin=loader.get_template('pagina_princesas.html')
+    return HttpResponse(templatePrin.render())
+
 
 def login(request):
     templateLog=loader.get_template('login.html')
     return HttpResponse(templateLog.render())
+
+def register(request):
+    templateReg=loader.get_template('register.html')
+    return HttpResponse(templateReg.render())
