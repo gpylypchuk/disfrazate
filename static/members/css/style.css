@@ -1,3 +1,15 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Bokor&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+h1.bokor {
+  font-family: "Bokor", sans-serif !important;
+  font-weight: 500 !important;
+  font-style: normal !important;
+  font-size: 8rem;
+  color: black;
+}
+
+
   .customCarousel {
     height: 800px; /* Ajusta el valor según tu preferencia */
   }
@@ -42,3 +54,11 @@ a.linksdeco {
     color: black; /* Cambia el color del texto */
     text-decoration: none; /* Elimina el subrayado */
 }
+
+ .texto {
+  font-family: "Raleway", serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  color: black;
+ }
