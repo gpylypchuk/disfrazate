@@ -35,10 +35,10 @@ h1.bokor {
     margin-bottom: 1%;
   }
   .formPers {
-    margin-top: 3rem;
+    margin-top: 1rem;
     margin-bottom: 3rem;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 30%;
+    margin-right: 30%;
   }
 
   .container {
@@ -48,6 +48,24 @@ h1.bokor {
     height: 500px; /* Altura del div */
     border: none;
     overflow: hidden;
+}
+
+.containerLog {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 20rem; /* Altura del div */
+  border: none;
+  overflow: hidden;
+}
+
+.containerReg {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 18rem; /* Altura del div */
+  border: none;
+  overflow: hidden;
 }
 
 a.linksdeco {
@@ -61,4 +79,8 @@ a.linksdeco {
   font-weight: 800;
   font-style: normal;
   color: black;
+ }
+
+  .card-img-top {
+    height: 40rem;
  }
