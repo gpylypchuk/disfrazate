@@ -80,3 +80,7 @@ def listar_usuarios(request):
     
     # Pasa los usuarios a la plantilla
     return render(request, 'listar_usuarios.html', {'usuarios': usuarios})
+
+# def iniciar_session(request):
+
+# def cerrar_session(request):
