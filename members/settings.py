@@ -5,7 +5,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'disfrazate',
         'USER': 'root',
-        'PASSWORD': '1234',   #Contraseña actualizada
+        'PASSWORD': 'gero2004',   #Contraseña actualizada
         'HOST': 'localhost',  # Cambiar si usas un servidor remoto
         'PORT': '3306',       # Cambiar si usas un puerto diferente
     }
