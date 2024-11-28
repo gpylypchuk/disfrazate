@@ -68,6 +68,30 @@ h1.bokor {
   overflow: hidden;
 }
 
+.containerCarrito {
+  display: flex;
+  justify-content: space-evenly;
+  height: 100vh;
+}
+
+.carrito {
+  flex-grow: 5;
+  background-color: #e4e3e3;
+}
+
+.tarjeta{
+  align-content: center;
+  flex-grow: 2;
+  background-color: rgb(193, 214, 184);
+}
+
+.formPagar {
+  margin-top: 0rem;
+  margin-bottom: 40%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
 a.linksdeco {
     color: black; /* Cambia el color del texto */
     text-decoration: none; /* Elimina el subrayado */
