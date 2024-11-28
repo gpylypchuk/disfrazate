@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
-from .models import Usuario
+from .models import User
 from django.contrib.auth.hashers import make_password
 
 
@@ -62,7 +62,7 @@ def registrar_usuario(request):
         password = make_password(password)
 
         # Crear el nuevo usuario
-        nuevo_usuario = Usuario(usuario=usuario, email=email, password=password)
+        nuevo_usuario = User(usuario=usuario, email=email, password=password)
         nuevo_usuario.save()
 
         # Redirigir a una página de éxito o la misma página
@@ -76,7 +76,7 @@ def registro_exitoso(request):
 
 def listar_usuarios(request):
     # Obtén todos los usuarios de la base de datos
-    usuarios = Usuario.objects.all()
+    usuarios = User.objects.all()
     
     # Pasa los usuarios a la plantilla
     return render(request, 'listar_usuarios.html', {'usuarios': usuarios})
