@@ -3,151 +3,222 @@
 <!-- con target="__blank" se abre en otra pagina" -->
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./media/logoo.jpg" />
+    <link rel="stylesheet" href="{% static 'members/css/style.css' %}" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="./media/logoo.jpg">
-  <link rel="stylesheet" href="{% static 'members/css/style.css' %}">
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>Mad Kingdom</title>
+  </head>
 
-  <title>Mad Kingdom</title>
-
-</head>
-
-
-<body style="background-color: #D8D8D8;">
-  <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <img src="./media/logo.png" alt="" style="height: 50px; width: 60px;">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'home' %}">HOME</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Base de datos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Metodos de pago</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-disabled="true">NO SE ACEPTAN DEVOLUCIONES</a>
-            </li>
-          </ul>
-          <!-- Botón LOG IN alineado a la derecha -->
-          <div class="ms-auto">
-            <a href="{% url 'login' %}" class="btn" style="background-color: #0A1719; color: white;">LOG IN</a>
+  <body style="background-color: #d8d8d8">
+    <header>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <img
+            src="./media/logo.png"
+            alt=""
+            style="height: 50px; width: 60px"
+          />
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="{% url 'home' %}"
+                  >HOME</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Base de datos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Metodos de pago</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-disabled="true"
+                  >NO SE ACEPTAN DEVOLUCIONES</a
+                >
+              </li>
+            </ul>
+            <!-- Botón LOG IN alineado a la derecha -->
+            <div class="ms-auto">
+              <a
+                href="{% url 'login' %}"
+                class="btn"
+                style="background-color: #0a1719; color: white"
+                >LOG IN</a
+              >
+            </div>
           </div>
         </div>
+      </nav>
+    </header>
+    <hr />
+    <hr />
+    <h1 style="text-align: center; text-decoration: underline" class="texto">
+      Catalogo de Disfraces de Halloween
+    </h1>
+
+    <div class="card-group marginLR">
+      <div class="card marginR" style="background-color: transparent">
+        <a class="linksdeco" href="">
+          <img src="" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <p
+              style="text-align: center; font-size: 1.5rem"
+              class="card-text texto"
+            >
+              Vampiro
+            </p>
+          </div>
+        </a>
       </div>
-    </nav>
-
-  </header>
-  <hr>
-  <hr>
-  <h1 style="text-align: center; text-decoration: underline;" class="texto">Catalogo de Disfraces de Halloween</h1>
-
-  <div class="card-group marginLR">
-    <div class="card marginR" style="background-color: transparent">
-      <a class="linksdeco" href="">
-        <img src="" class="card-img-top" alt="..."/>
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem;" class="card-text texto">Vampiro</p>
-        </div>
-      </a>
+      <div class="card marginR" style="background-color: transparent">
+        <a class="linksdeco" href="">
+          <img src="" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <p
+              style="text-align: center; font-size: 1.5rem"
+              class="card-text texto"
+            >
+              Esqueleto
+            </p>
+          </div>
+        </a>
+      </div>
+      <div class="card" style="background-color: transparent">
+        <a class="linksdeco" href="">
+          <img src="" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <p
+              style="text-align: center; font-size: 1.5rem"
+              class="card-text texto"
+            >
+              Bruja
+            </p>
+          </div>
+        </a>
+      </div>
     </div>
-    <div class="card marginR" style="background-color: transparent">
-      <a class="linksdeco" href="">
-        <img src="" class="card-img-top" alt="..."/>
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem;" class="card-text texto">Esqueleto</p>
-        </div>
-      </a>
-    </div>
-    <div class="card" style="background-color: transparent">
-      <a class="linksdeco" href="">
-        <img src="" class="card-img-top" alt="..."/>
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem;" class="card-text texto">Bruja</p>
-        </div>
-      </a>
-    </div>
-  </div>
 
-  <div class="card-group marginLR" style="margin-top: 1%;">
-    <div class="card marginR" style="background-color: transparent">
-      <a class="linksdeco" href="">
-        <img src="" class="card-img-top" alt="..."/>
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem;" class="card-text texto">Zombie</p>
-        </div>
-      </a>
+    <div class="card-group marginLR" style="margin-top: 1%">
+      <div class="card marginR" style="background-color: transparent">
+        <a class="linksdeco" href="">
+          <img src="" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <p
+              style="text-align: center; font-size: 1.5rem"
+              class="card-text texto"
+            >
+              Zombie
+            </p>
+          </div>
+        </a>
+      </div>
+      <div class="card marginR" style="background-color: transparent">
+        <a class="linksdeco" href="">
+          <img src="" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <p
+              style="text-align: center; font-size: 1.5rem"
+              class="card-text texto"
+            >
+              Calabaza
+            </p>
+          </div>
+        </a>
+      </div>
+      <div class="card" style="background-color: transparent">
+        <a class="linksdeco" href="">
+          <img src="" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <p
+              style="text-align: center; font-size: 1.5rem"
+              class="card-text texto"
+            >
+              Ghostface
+            </p>
+          </div>
+        </a>
+      </div>
     </div>
-    <div class="card marginR" style="background-color: transparent">
-      <a class="linksdeco" href="">
-        <img src="" class="card-img-top" alt="..."/>
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem;" class="card-text texto">Calabaza</p>
-        </div>
-      </a>
+
+    <div class="card-group marginLR" style="margin-top: 1%">
+      <div class="card marginR" style="background-color: transparent">
+        <a class="linksdeco" href="">
+          <img src="" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <p
+              style="text-align: center; font-size: 1.5rem"
+              class="card-text texto"
+            >
+              Jack Skellington
+            </p>
+          </div>
+        </a>
+      </div>
+      <div class="card marginR" style="background-color: transparent">
+        <a class="linksdeco" href="">
+          <img src="" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <p
+              style="text-align: center; font-size: 1.5rem"
+              class="card-text texto"
+            >
+              Diablillo
+            </p>
+          </div>
+        </a>
+      </div>
+      <div class="card" style="background-color: transparent">
+        <a class="linksdeco" href="">
+          <img src="" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <p
+              style="text-align: center; font-size: 1.5rem"
+              class="card-text texto"
+            >
+              Vampiresa
+            </p>
+          </div>
+        </a>
+      </div>
     </div>
-    <div class="card" style="background-color: transparent">
-      <a class="linksdeco" href="">
-        <img src="" class="card-img-top" alt="..."/>
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem;" class="card-text texto">Ghostface</p>
-        </div>
-      </a>
-    </div>
-  </div>
 
-  <div class="card-group marginLR" style="margin-top: 1%;">
-    <div class="card marginR" style="background-color: transparent">
-      <a class="linksdeco" href="">
-        <img src="" class="card-img-top" alt="..."/>
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem;" class="card-text texto">Jack Skellington</p>
-        </div>
-      </a>
-    </div>
-    <div class="card marginR" style="background-color: transparent">
-      <a class="linksdeco" href="">
-        <img src="" class="card-img-top" alt="..."/>
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem;" class="card-text texto">Diablillo</p>
-        </div>
-      </a>
-    </div>
-    <div class="card" style="background-color: transparent">
-      <a class="linksdeco" href="">
-        <img src="" class="card-img-top" alt="..."/>
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem;" class="card-text texto">Vampiresa</p>
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <footer>
-    <hr>
-    <p style="padding-left: 1rem;">Gracias por visitarnos!,  desde ya aclaramos que es una pagina libre de Copyright ©</p>
-
-  </footer>
-
-
-</body>
-
+    <footer>
+      <hr />
+      <p style="padding-left: 1rem">
+        Gracias por visitarnos!, desde ya aclaramos que es una pagina libre de
+        Copyright ©
+      </p>
+    </footer>
+  </body>
 </html>

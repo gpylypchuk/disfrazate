@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.members, name='home'),  # Página principal
+    path('', views.home, name='home'),  # Página principal
     path('halloween', views.pagina_halloween, name='pagina_halloween'),  # Página de Halloween
     path('navidad', views.pagina_navidad, name='pagina_navidad'),  # Página de Navidad
     path('retro', views.pagina_retro, name='pagina_retro'),  # Página retro
@@ -11,6 +11,7 @@ urlpatterns = [
     path('cosplay', views.pagina_cosplay, name='pagina_cosplay'),  # Página retro
     path('login', views.login, name='login'),
     path('register', views.register, name='register'),
+    path('carrito', views.carrito, name='carrito'),
     
     # Esto es de prueba se debe adaptar a lo hecho
     path('registro/', views.registrar_usuario, name='registrar_usuario'),
