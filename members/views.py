@@ -60,7 +60,7 @@ def register(request):
         password = request.POST['password']
         
         if password == request.POST['2password']:
-            password = Usuario.password = make_password(password)  # Encripta la contraseña
+            password = make_password(password)  # Encripta la contraseña
             nuevo_usuario = Usuario.objects.create(
                 name=name,
                 apellido=apellido,
