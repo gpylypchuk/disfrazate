@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,70 +7,54 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            padding: 50px;
+            margin: 20px;
+            background-color: #f9f9f9;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-bottom: 20px;
         }
         table, th, td {
             border: 1px solid #ddd;
         }
         th, td {
-            padding: 10px;
+            padding: 8px;
             text-align: left;
         }
         th {
             background-color: #4CAF50;
             color: white;
         }
-        .button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-        .button:hover {
-            background-color: #0056b3;
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
         }
     </style>
 </head>
 <body>
-
-    <h1>Lista de Usuarios Registrados</h1>
-    
-    <!-- Tabla de usuarios -->
+    <h1>Lista de Usuarios</h1>
     <table>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Usuario</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
                 <th>Email</th>
+                <th>Usuario</th>
                 <th>Fecha de Registro</th>
             </tr>
         </thead>
         <tbody>
+            <!-- Aquí se generarán dinámicamente las filas -->
             {% for usuario in usuarios %}
             <tr>
-                <td>{{ usuario.id }}</td>
-                <td>{{ usuario.usuario }}</td>
+                <td>{{ usuario.name }}</td>
+                <td>{{ usuario.apellido }}</td>
                 <td>{{ usuario.email }}</td>
+                <td>{{ usuario.usuario }}</td>
                 <td>{{ usuario.fecha_registro }}</td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="4">No hay usuarios registrados.</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-
-    <a href="/" class="button">Volver al inicio</a>
-
 </body>
 </html>

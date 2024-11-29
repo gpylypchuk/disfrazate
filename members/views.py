@@ -43,32 +43,38 @@ def login(request):
     templateLog=loader.get_template('login.html')
     return HttpResponse(templateLog.render())
 
-def register(request):
-     templateReg=loader.get_template('register.html')
-     return HttpResponse(templateReg.render())
+# def register(request):
+#      templateReg=loader.get_template('register.html')
+#      return HttpResponse(templateReg.render())
 
 def carrito(request):
     templateCar=loader.get_template('carrito.html')
     return HttpResponse(templateCar.render())     
      
-def registrar_usuario(request):
+def register(request):
     if request.method == 'POST':
-        # Obtener los datos del formulario
-        usuario = request.POST['usuario']
+        name = request.POST['name']
+        apellido = request.POST['apellido']
         email = request.POST['email']
+        usuario = request.POST['usuario']
         password = request.POST['password']
         
-        # Encriptar la contraseña
-        password = make_password(password)
+        if password == request.POST['2password']:
+            password = Usuario.password = make_password(password)  # Encripta la contraseña
+            nuevo_usuario = Usuario.objects.create(
+                name=name,
+                apellido=apellido,
+                email=email,
+                usuario=usuario,
+                password=password
+            )
+            nuevo_usuario.save()  # Guarda el usuario en la base de datos
+            return redirect('login')  # Redirige a la página de login
+        else:
+            # Si las contraseñas no coinciden, muestra un error
+            return render(request, 'registro.html', {'error': 'Las contraseñas no coinciden.'})
+    return render(request, 'register.html')
 
-        # Crear el nuevo usuario
-        nuevo_usuario = Usuario(usuario=usuario, email=email, password=password)
-        nuevo_usuario.save()
-
-        # Redirigir a una página de éxito o la misma página
-        return redirect('registro_exitoso')
-    
-    return render(request, 'registro.html')
 
 def registro_exitoso(request):
     templateRegEx=loader.get_template('registro_exitoso.html')

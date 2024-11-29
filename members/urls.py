@@ -10,11 +10,10 @@ urlpatterns = [
     path('princesas', views.pagina_princesas, name='pagina_princesas'),  # Página de Navidad
     path('cosplay', views.pagina_cosplay, name='pagina_cosplay'),  # Página retro
     path('login', views.login, name='login'),
-    path('register', views.register, name='register'),
+    path('register/', views.register, name='register'),
     path('carrito', views.carrito, name='carrito'),
-    
+
     # Esto es de prueba se debe adaptar a lo hecho
-    path('registro/', views.registrar_usuario, name='registrar_usuario'),
     path('registro_exitoso/', views.registro_exitoso, name='registro_exitoso'),
     path('usuarios/', views.listar_usuarios, name='listar_usuarios'),  # Ruta para listar usuarios
 ]
