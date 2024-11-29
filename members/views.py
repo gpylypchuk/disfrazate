@@ -3,12 +3,8 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import Usuario
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
 
 # Create your views here.
-
 def home(request):
     templateH=loader.get_template('home.html')
     return HttpResponse(templateH.render())
@@ -53,10 +49,7 @@ def register(request):
 
 def carrito(request):
     templateCar=loader.get_template('carrito.html')
-    return HttpResponse(templateCar.render())
-
-     # desde aca los metodos para el correcto registro de usuario
-     
+    return HttpResponse(templateCar.render())     
      
 def registrar_usuario(request):
     if request.method == 'POST':
