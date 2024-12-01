@@ -14,6 +14,5 @@ urlpatterns = [
     path('carrito', views.carrito, name='carrito'),
 
     # Esto es de prueba se debe adaptar a lo hecho
-    path('registro_exitoso/', views.registro_exitoso, name='registro_exitoso'),
     path('usuarios/', views.listar_usuarios, name='listar_usuarios'),  # Ruta para listar usuarios
 ]

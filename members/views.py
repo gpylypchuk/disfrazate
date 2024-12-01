@@ -1,10 +1,10 @@
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
 from django.http import HttpResponse
+from django.contrib import messages
 from django.template import loader
 from .models import Usuario
-from django.contrib.auth import authenticate, login
-from django.contrib import messages
-from django.contrib.auth.models import User
 
 # Create your views here.
 def home(request):
@@ -41,20 +41,13 @@ def pagina_princesas(request):
     templatePrin=loader.get_template('pagina_princesas.html')
     return HttpResponse(templatePrin.render())
 
-# def login(request):
-#     templateLog=loader.get_template('login.html')
-#     return HttpResponse(templateLog.render())
-
-# def register(request):
-#      templateReg=loader.get_template('register.html')
-#      return HttpResponse(templateReg.render())
-
 def carrito(request):
     templateCar=loader.get_template('carrito.html')
     return HttpResponse(templateCar.render())     
      
 def register(request):
     if request.method == 'POST':
+        # Obtener los datos del formulario
         name = request.POST['name']
         apellido = request.POST['apellido']
         email = request.POST['email']
@@ -63,21 +56,23 @@ def register(request):
         
         if password == request.POST['2password']:
             # Crear un nuevo usuario
-            user = User.objects.create_user(username=usuario, email=email, password=password)
-            user.save()
-            # Guardar el usuario en la base de datos
-            usuario = Usuario(name=name, apellido=apellido, email=email, usuario=usuario, password=password)
-            usuario.save()
-            
+            try:
+                user = User.objects.create_user(username=usuario, email=email, password=password)
+                user.save()
+
+                # Guardar el usuario en la base de datos
+                usuario = Usuario(name=name, apellido=apellido, email=email, usuario=usuario, password=password)
+                usuario.save()
+            except:
+                return render(request, 'registro.html', {'error': 'El usuario ya existe.'})
+    
             return redirect('login')  # Redirige a la página de login
+        
         else:
             # Si las contraseñas no coinciden, muestra un error
             return render(request, 'registro.html', {'error': 'Las contraseñas no coinciden.'})
+        
     return render(request, 'register.html')
-
-def registro_exitoso(request):
-    templateRegEx=loader.get_template('registro_exitoso.html')
-    return HttpResponse(templateRegEx.render())
 
 def listar_usuarios(request):
     # Obtén todos los usuarios de la base de datos
@@ -88,13 +83,12 @@ def listar_usuarios(request):
 
 def login_view(request):
     if request.method == 'POST':
+        # Obtener el nombre de usuario y la contraseña del formulario
         username = request.POST['usuario']
         password = request.POST['password']
 
         # Autenticar al usuario usando el correo electrónico y la contraseña
         user = authenticate(request, username=username, password=password)
-
-        print(f'Usuario: {user}')
 
         if user is None:
             messages.error(request, 'Usuario o contraseña incorrectos.')
