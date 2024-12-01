@@ -26,7 +26,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
 
       <div class="container-fluid">
-        <img src="./media/logo.png" alt="" style="height: 50px; width: 60px;">
+        <img src="../../media/logo.png" alt="" style="height: 50px; width: 60px;">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -52,22 +52,39 @@
   </header>
 
   <div class="containerLog">
-    <img src="./media/logo.png" alt="" style="width: 25rem; height: 18rem; transform: scale(0.9)">
+    <img src="../../media/logo.png" alt="" style="width: 25rem; height: 18rem; transform: scale(0.9)">
   </div>
 
+  <!-- Mostrar los mensajes de error aquí -->
+  {% if messages %}
+  <div class="alert alert-danger">
+      {% for message in messages %}
+        <p>{{ message }}</p>
+      {% endfor %}
+  </div>
+  {% endif %}
 
-  <form class="formPers">
+  <form method="POST" class="formPers">
+    {% csrf_token %}
+
     <!-- Campo de correo -->
-    <div class="mb-3">
+    <!-- <div class="mb-3">
       <label for="email" class="form-label">Correo Electrónico</label>
-      <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required />
+      <input type="email" name="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required />
+    </div> -->
+
+    <div class="mb-3">
+      <label for="usuario" class="form-label">Usuario</label>
+      <input type="text" name="usuario" class="form-control" id="usuario" placeholder="juan12" required />
     </div>
+
     <!-- Campo de contraseña -->
     <div class="mb-3">
       <label for="password" class="form-label">Contraseña</label>
-      <input type="password" class="form-control" id="password" placeholder="••••••••" required />
+      <input type="password" name="password" class="form-control" id="password" placeholder="••••••••" required />
       <p>¿Ha olvidado su contraseña? No se preocupe y mande un mail al administrador</p>
     </div>
+
     <!-- Botón de inicio de sesión -->
     <button type="submit" class="btn w-100" style="background-color: #0A1719; color: white">
       Iniciar Sesión
