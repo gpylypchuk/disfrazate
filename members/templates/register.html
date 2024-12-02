@@ -26,7 +26,7 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
 
             <div class="container-fluid">
-                <img src="./media/logo.png" alt="" style="height: 50px; width: 60px;">
+                <img src="../../media/logo.png" alt="" style="height: 50px; width: 60px;">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -37,7 +37,7 @@
                             <a class="nav-link active" aria-current="page" href="{% url 'home' %}">HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Base de datos</a>
+                            <a class="nav-link" href="/usuarios">Base de datos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Metodos de pago</a>
@@ -51,45 +51,51 @@
         </nav>
     </header>
 
-
     <div class="containerReg">
-        <img src="./media/logo.png" alt="" style="width: 25rem; height: 18rem; transform: scale(0.9)">
+        <img src="../../media/logo.png" alt="" style="width: 25rem; height: 18rem; transform: scale(0.9)">
     </div>
 
     <form method="POST" class="formPers">
-        <!-- Campo de correo -->
+        {% csrf_token %}
+
+        <!-- Campo de nombre -->
         <div class="mb-3">
             <label for="name" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="name" placeholder="Leonel" required />
+            <input type="text" class="form-control" id="name" placeholder="Leonel" name="name" required />
         </div>
+
         <!-- Campo de contraseña -->
         <div class="mb-3">
             <label for="apellido" class="form-label">Apellido</label>
-            <input type="text" class="form-control" id="apellido" placeholder="Messi" required />
+            <input type="text" class="form-control" id="apellido" placeholder="Messi" name="apellido" required />
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Correo Electrónico</label>
-            <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required />
+            <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" name="email" required />
         </div>
-        <!-- Campo de contraseña -->
+
+        <!-- Campo de usuario -->
         <div class="mb-3">
             <label for="usuario" class="form-label">Usuario</label>
-            <input type="user" class="form-control" id="usuario" placeholder="LeonelMessi10" required />
+            <input type="user" class="form-control" id="usuario" placeholder="LeonelMessi10" name="usuario" required />
         </div>
 
         <div class="mb-3">
             <label for="password" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="password" placeholder="••••••••" required />
+            <input type="password" class="form-control" id="password" placeholder="••••••••" name="password" required />
         </div>
+
         <!-- Campo de contraseña -->
         <div class="mb-3">
             <label for="password" class="form-label">Repetir contraseña</label>
-            <input type="password" class="form-control" id="2password" placeholder="••••••••" required />
+            <input type="password" class="form-control" id="2password" placeholder="••••••••" name="2password" required />
         </div>
+
         <!-- Botón de registro -->
         <button type="submit" class="btn w-100" style="background-color: #0A1719; color: white">
             Registrarse
         </button>
+
         <p style="text-align: right;">¿Ya tienes una cuenta? <a href="{%url 'login' %}">Inicie sesion aqui</a></p>
     </form>
 
@@ -97,7 +103,8 @@
     <footer>
         <hr>
         <p style="padding-left: 1rem;">Gracias por visitarnos!,  desde ya aclaramos que es una pagina libre de Copyright ©</p>
-      </footer>
+    </footer>
+
 </body>
 
 </html>

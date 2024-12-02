@@ -2,8 +2,10 @@ from django.db import models
 
 # Create your models here.
 class Usuario(models.Model):
-    usuario = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, default='Desconocido')
+    apellido = models.CharField(max_length=100, default='Desconocido')
     email = models.EmailField()
+    usuario = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
     fecha_registro = models.DateTimeField(auto_now_add=True)
 
