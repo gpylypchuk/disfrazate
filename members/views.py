@@ -8,6 +8,9 @@ from .models import Usuario
 
 # Create your views here.
 def home(request):
+    # print("Usuario autenticado:", request.user)
+    print(f"Usuario autenticado: {request.user.is_authenticated}")
+    print(f"Nombre de usuario: {request.user.username}")
     templateH=loader.get_template('home.html')
     return HttpResponse(templateH.render())
 
@@ -94,6 +97,7 @@ def login_view(request):
             messages.error(request, 'Usuario o contraseña incorrectos.')
         else:
             login(request, user)
+            print(request.user)
             return redirect('home')  # Redirige a la página principal
     
     return render(request, 'login.html')
