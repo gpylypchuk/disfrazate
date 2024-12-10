@@ -1,0 +1,94 @@
+{% load static %}
+<!-- Esto es un comentario -->
+<!-- con target="__blank" se abre en otra pagina" -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./media/logo.png" />
+    <link rel="stylesheet" href="{% static 'members/css/style.css' %}" />
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+
+    <title>Mad Kingdom</title>
+
+</head>
+
+<body style="background-color: #D8D8D8;">
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <img src="./media/logo.png" alt="" style="height: 50px; width: 60px;">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Terminos y condiciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Metodos de pago</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-disabled="true">NO SE ACEPTAN DEVOLUCIONES</a>
+                        </li>
+                    </ul>
+                    <!-- Botón LOG IN alineado a la derecha -->
+                    <div class="ms-auto">
+                        <a href="{% url 'login' %}" class="btn" style="background-color: #0A1719; color: white;">LOG
+                            IN</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="containerCarrito">
+        <div class="carrito">hoal</div>
+        <div class="tarjeta">
+            <form class="formPagar">
+                <!-- Campo de nombre -->
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nombre Completo</label>
+                    <input type="name" class="form-control" id="name" placeholder="Juanito Perez" required />
+                </div>
+                <!-- Campo de contraseña -->
+                <div class="mb-3">
+                    <label for="card" class="form-label">Tarjeta de Credito</label>
+                    <input type="card" class="form-control" id="card" placeholder="•••• •••• •••• ••••" required />
+                </div>
+                <div class="mb-3">
+                    <label for="expireDate" class="form-label">Fecha de Vencimiento</label>
+                    <input type="text" class="form-control" id="expireDate" placeholder="MM/AA" required />
+                </div>
+                <!-- Campo de contraseña -->
+                <div class="mb-3">
+                    <label for="card" class="form-label">CVV</label>
+                    <input type="text" class="form-control" id="cvv" placeholder="•••" required />
+                </div>
+                <!-- Botón de inicio de sesión -->
+                <button type="submit" class="btn w-100" style="background-color: #0A1719; color: white">
+                    Comprar
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>

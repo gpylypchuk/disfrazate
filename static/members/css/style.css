@@ -1,3 +1,15 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Bokor&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+h1.bokor {
+  font-family: "Bokor", sans-serif !important;
+  font-weight: 500 !important;
+  font-style: normal !important;
+  font-size: 8rem;
+  color: black;
+}
+
+
   .customCarousel {
     height: 800px; /* Ajusta el valor según tu preferencia */
   }
@@ -8,6 +20,102 @@
   
   #customCarousel .carousel-item img {
     object-fit: cover; /* Hace que las imágenes se ajusten sin deformarse */
-    height: 100%;
+    height: 100%;   
     width: 100%;
   }
+
+  .marginLR {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .marginR {
+    margin-right: 1%;
+  }
+  .marginB {
+    margin-bottom: 1%;
+  }
+  .formPers {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    margin-left: 30%;
+    margin-right: 30%;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 500px; /* Altura del div */
+    border: none;
+    overflow: hidden;
+}
+
+.containerLog {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 20rem; /* Altura del div */
+  border: none;
+  overflow: hidden;
+}
+
+.containerReg {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 18rem; /* Altura del div */
+  border: none;
+  overflow: hidden;
+}
+
+.containerCarrito {
+  display: flex;
+  justify-content: space-evenly;
+  height: 100vh;
+}
+
+.containerCA {
+  display: flex;
+  justify-content: space-evenly;
+
+}
+
+.containerUser {
+  display: flex;
+  align-items: center;
+}
+
+.carrito {
+  flex-grow: 5;
+  background-color: #e4e3e3;
+}
+
+.tarjeta{
+  align-content: center;
+  flex-grow: 2;
+  background-color: rgb(193, 214, 184);
+}
+
+.formPagar {
+  margin-top: 0rem;
+  margin-bottom: 40%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+a.linksdeco {
+    color: black; /* Cambia el color del texto */
+    text-decoration: none; /* Elimina el subrayado */
+}
+
+ .texto {
+  font-family: "Raleway", serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  color: black;
+ }
+
+  .card-img-top {
+    height: 40rem;
+ }
