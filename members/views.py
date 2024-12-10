@@ -79,12 +79,12 @@ def register(request):
         usuario = request.POST['usuario']
         password = request.POST['password']
         confirm_password = request.POST['2password']
-        print(name)
-        print(apellido)
-        print(email)
-        print(usuario)
-        print(password)
-        print(confirm_password)
+        # print(name)
+        # print(apellido)
+        # print(email)
+        # print(usuario)
+        # print(password)
+        # print(confirm_password)
         
         # Validar que las contraseñas coincidan
         if password != confirm_password:
