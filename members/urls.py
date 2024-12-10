@@ -12,6 +12,7 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('register/', views.register, name='register'),
     path('carrito', views.carrito, name='carrito'),
+    path('logout/', views.logout_view, name='logout'),
 
     # Esto es de prueba se debe adaptar a lo hecho
     path('usuarios/', views.listar_usuarios, name='listar_usuarios'),  # Ruta para listar usuarios

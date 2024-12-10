@@ -74,6 +74,17 @@ h1.bokor {
   height: 100vh;
 }
 
+.containerCA {
+  display: flex;
+  justify-content: space-evenly;
+
+}
+
+.containerUser {
+  display: flex;
+  align-items: center;
+}
+
 .carrito {
   flex-grow: 5;
   background-color: #e4e3e3;

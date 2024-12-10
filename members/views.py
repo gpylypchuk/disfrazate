@@ -1,53 +1,75 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.http import HttpResponse
 from django.contrib import messages
-from django.template import loader
 from .models import Usuario
+from django.template.loader import render_to_string
+from django.contrib.auth import logout
+from django.db import IntegrityError
 
-# Create your views here.
+
+# Vista para la página principal
 def home(request):
-    # print("Usuario autenticado:", request.user)
-    print(f"Usuario autenticado: {request.user.is_authenticated}")
-    print(f"Nombre de usuario: {request.user.username}")
-    templateH=loader.get_template('home.html')
-    return HttpResponse(templateH.render())
+    return render(request, 'home.html')
 
 # Vista para la página de Halloween
 def pagina_halloween(request):
-    templateHal=loader.get_template('pagina_halloween.html')
-    return HttpResponse(templateHal.render())
+    return render(request, 'pagina_halloween.html')
 
 # Vista para la página de Navidad
 def pagina_navidad(request):
-    templateNav=loader.get_template('pagina_navidad.html')
-    return HttpResponse(templateNav.render())
+    return render(request, 'pagina_navidad.html')
 
 # Vista para la página de retro
 def pagina_retro(request):
-    templateRet=loader.get_template('pagina_retro.html')
-    return HttpResponse(templateRet.render())
+    return render(request, 'pagina_retro.html')
 
-# Vista para la página de Halloween
+# Vista para la página de Cosplay
 def pagina_cosplay(request):
-    templateCos=loader.get_template('pagina_cosplay.html')
-    return HttpResponse(templateCos.render())
+    return render(request, 'pagina_cosplay.html')
 
-# Vista para la página de Navidad
+# Vista para la página de Héroes
 def pagina_heroes(request):
-    templateHer=loader.get_template('pagina_heroes.html')
-    return HttpResponse(templateHer.render())
+    return render(request, 'pagina_heroes.html')
 
-# Vista para la página de retro
+# Vista para la página de Princesas
 def pagina_princesas(request):
-    templatePrin=loader.get_template('pagina_princesas.html')
-    return HttpResponse(templatePrin.render())
+    return render(request, 'pagina_princesas.html')
 
+# Vista para la página del Carrito
 def carrito(request):
-    templateCar=loader.get_template('carrito.html')
-    return HttpResponse(templateCar.render())     
+    return render(request, 'carrito.html')
+    
      
+# def register(request):
+#     if request.method == 'POST':
+#         # Obtener los datos del formulario
+#         name = request.POST['name']
+#         apellido = request.POST['apellido']
+#         email = request.POST['email']
+#         usuario = request.POST['usuario']
+#         password = request.POST['password']
+        
+#         if password == request.POST['2password']:
+#             # Crear un nuevo usuario
+#             try:
+#                 user = User.objects.create_user(username=usuario, email=email, password=password)
+#                 user.save()
+
+#                 # Guardar el usuario en la base de datos
+#                 usuario = Usuario(name=name, apellido=apellido, email=email, usuario=usuario, password=password)
+#                 usuario.save()
+#             except:
+#                 return render(request, 'registro.html', {'error': 'El usuario ya existe.'})
+    
+#             return redirect('login')  # Redirige a la página de login
+        
+#         else:
+#             # Si las contraseñas no coinciden, muestra un error
+#             return render(request, 'registro.html', {'error': 'Las contraseñas no coinciden.'})
+        
+#     return render(request, 'register.html')
+
 def register(request):
     if request.method == 'POST':
         # Obtener los datos del formulario
@@ -56,25 +78,33 @@ def register(request):
         email = request.POST['email']
         usuario = request.POST['usuario']
         password = request.POST['password']
+        confirm_password = request.POST['2password']
+        print(name)
+        print(apellido)
+        print(email)
+        print(usuario)
+        print(password)
+        print(confirm_password)
         
-        if password == request.POST['2password']:
+        # Validar que las contraseñas coincidan
+        if password != confirm_password:
+            return render(request, 'register.html', {'error': 'Las contraseñas no coinciden.'})
+        
+        try:
             # Crear un nuevo usuario
-            try:
-                user = User.objects.create_user(username=usuario, email=email, password=password)
-                user.save()
+            user = User.objects.create_user(username=usuario, email=email, password=password)
+            user.save()
 
-                # Guardar el usuario en la base de datos
-                usuario = Usuario(name=name, apellido=apellido, email=email, usuario=usuario, password=password)
-                usuario.save()
-            except:
-                return render(request, 'registro.html', {'error': 'El usuario ya existe.'})
-    
+            # Guardar datos adicionales en la base de datos (si tienes un modelo extra)
+            usuario_extra = Usuario(name=name, apellido=apellido, email=email, usuario=usuario)
+            usuario_extra.save()
+
             return redirect('login')  # Redirige a la página de login
+        except IntegrityError:
+            return render(request, 'register.html', {'error': 'Las contraseñas no coinciden.'})
         
-        else:
-            # Si las contraseñas no coinciden, muestra un error
-            return render(request, 'registro.html', {'error': 'Las contraseñas no coinciden.'})
-        
+
+    # Si no es un POST, muestra el formulario vacío
     return render(request, 'register.html')
 
 def listar_usuarios(request):
@@ -101,3 +131,7 @@ def login_view(request):
             return redirect('home')  # Redirige a la página principal
     
     return render(request, 'login.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')
