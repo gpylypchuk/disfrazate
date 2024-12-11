@@ -7,7 +7,7 @@
 ## 📝 **Requisitos**
 Asegurate de tener instalados los siguientes componentes antes de empezar:
 
-- **Python**: Versión 3.6 o superior.
+- **Python**: Versión 3.11 o superior.
 - **pip**: Versión 20.0.2 o superior.
 
 ---
