@@ -96,6 +96,14 @@ def eliminar_item_carrito(request, item_id):
     item.delete()
     return redirect('carrito')
 
+@require_POST
+@login_required
+def alternar_alquiler_compra(request, item_id):
+    item = get_object_or_404(CarritoItem, id=item_id, carrito__usuario=request.user)
+    item.es_alquiler = not item.es_alquiler  # Alterna el estado
+    item.save()
+    return redirect('carrito')
+
 def register(request):
     if request.method == 'POST':
         # Obtener los datos del formulario

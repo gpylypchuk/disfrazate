@@ -62,9 +62,9 @@
           </nav>
     </header>
 
-    <div class="containerCarrito">
-      <h1>Tu Carrito</h1>
-      <table>
+    <div class="">
+      <h1 style="text-align: center; margin: 1rem;">Tu Carrito</h1>
+      <table style="margin: auto;">
           <thead>
               <tr>
                   <th>Producto</th>
@@ -85,9 +85,31 @@
                           <button type="submit">Actualizar</button>
                       </form>
                   </td>
-                  <td>${{ item.producto.precio_Compra }}</td>
-                  <td>${{ item.total_precio }}</td>
                   <td>
+                      {% if item.es_alquiler %}
+                          ${{ item.producto.precio_Alquiler }}
+                      {% else %}
+                          ${{ item.producto.precio_Compra }}
+                      {% endif %}
+                  </td>
+                  <td>
+                      {% if item.es_alquiler %}
+                          ${{ item.total_precio_alquiler }}
+                      {% else %}
+                          ${{ item.total_precio_compra }}
+                      {% endif %}
+                  </td>
+                  <td>
+                      <form method="post" action="{% url 'alternar_alquiler_compra' item.id %}" style="margin-bottom: 0.5rem;">
+                          {% csrf_token %}
+                          <button type="submit">
+                              {% if item.es_alquiler %}
+                                  Cambiar a Compra
+                              {% else %}
+                                  Cambiar a Alquiler
+                              {% endif %}
+                          </button>
+                      </form>
                       <form method="post" action="{% url 'eliminar_item_carrito' item.id %}">
                           {% csrf_token %}
                           <button type="submit">Eliminar</button>
@@ -97,7 +119,7 @@
               {% endfor %}
           </tbody>
       </table>
-      <h3>Total: ${{ carrito.total_compra }}</h3>
+      <h3 style="text-align: center; margin: 2rem;">Total: ${{ carrito.total_compra }}</h3>
         <div class="tarjeta">
             <form class="formPagar">
                 <!-- Campo de nombre -->
@@ -121,7 +143,7 @@
                 </div>
                 <!-- Botón de inicio de sesión -->
                 <button type="submit" class="btn w-100" style="background-color: #0A1719; color: white">
-                    Comprar
+                    Pagar
                 </button>
             </form>
 
