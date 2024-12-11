@@ -2,8 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .models import Usuario
-from django.template.loader import render_to_string
+from .models import Usuario, Producto
 from django.contrib.auth import logout
 from django.db import IntegrityError
 
@@ -14,7 +13,27 @@ def home(request):
 
 # Vista para la página de Halloween
 def pagina_halloween(request):
-    return render(request, 'pagina_halloween.html')
+    producto1 = Producto.objects.get(id=11)  # Vampiro
+    producto2 = Producto.objects.get(id=24)  # Esqueleto
+    producto3 = Producto.objects.get(id=25)  # Bruja
+    producto4 = Producto.objects.get(id=26)  # Zombie
+    producto5 = Producto.objects.get(id=15)  # Chucky    
+    producto6 = Producto.objects.get(id=28)  # Ghostface
+    producto7 = Producto.objects.get(id=34)  # Jack Skellington
+    producto8 = Producto.objects.get(id=45)  # Diablillo
+    producto9 = Producto.objects.get(id=46)  # Vampiresa
+    
+    return render(request, 'pagina_halloween.html',  {
+        'Vampiro': producto1,
+        'Esqueleto': producto2,
+        'Bruja': producto3,
+        'Zombie': producto4,
+        'Chucky': producto5,
+        'Ghostface': producto6,
+        'JackSkellington': producto7,
+        'Diablillo': producto8,
+        'Vampiresa': producto9,
+        })
 
 # Vista para la página de Navidad
 def pagina_navidad(request):

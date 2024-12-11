@@ -124,8 +124,6 @@ a.linksdeco {
   margin: 0%;
   background-color: #0A1719;
   color: white;
-  border: none; /* Elimina el borde si no lo deseas */
-  padding: 0.2rem 0.8rem; /* Añade un poco de espacio alrededor del texto */
   font-size: 1.5rem; /* Ajusta el tamaño del texto */
   cursor: pointer; /* Cambia el cursor para indicar que es clickeable */
   border-radius: 0.5rem; /* Redondea los bordes */
