@@ -119,3 +119,12 @@ a.linksdeco {
   .card-img-top {
     height: 40rem;
  }
+
+ .card-body .botonCarrito {
+  margin: 0%;
+  background-color: #0A1719;
+  color: white;
+  font-size: 1.5rem; /* Ajusta el tamaño del texto */
+  cursor: pointer; /* Cambia el cursor para indicar que es clickeable */
+  border-radius: 0.5rem; /* Redondea los bordes */
+}

@@ -47,10 +47,10 @@
             </li>
           </ul>
           <!-- Botón LOG IN alineado a la derecha -->
-          <div class="containerUser ms-auto">
+          <div class="containerUser ms-auto d-flex align-items-center gap-2">
             {% if user.is_authenticated %}
-              <img src="./media/carrito.png" alt="" style="height: 30px; width: 30px">
-              <p style="padding-right: 1rem;" href="#">{{ user.username }}</p>
+              <a href="{% url 'carrito' %}"><img src="./media/carrito.png" alt="carrito de compras" style="height: 30px; width: 30px"></a>
+              <p style="padding-top: 1rem;" href="#">{{ user.username }}</p>
               <a href="{% url 'logout' %}" class="btn" style="background-color: #0A1719; color: white;">LOG OUT</a>
             {% else %}
               <a href="{% url 'login' %}" class="btn" style="background-color: #0A1719; color: white;">LOG IN</a>
