@@ -2,7 +2,10 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .models import Usuario, Producto
+from django.contrib.auth.decorators import login_required
+from .models import Usuario, Producto, Carrito, CarritoItem
+from django.views.decorators.http import require_POST
+from django.shortcuts import get_object_or_404
 from django.contrib.auth import logout
 from django.db import IntegrityError
 
@@ -56,38 +59,42 @@ def pagina_princesas(request):
     return render(request, 'pagina_princesas.html')
 
 # Vista para la página del Carrito
+@login_required
 def carrito(request):
-    return render(request, 'carrito.html')
-    
-     
-# def register(request):
-#     if request.method == 'POST':
-#         # Obtener los datos del formulario
-#         name = request.POST['name']
-#         apellido = request.POST['apellido']
-#         email = request.POST['email']
-#         usuario = request.POST['usuario']
-#         password = request.POST['password']
-        
-#         if password == request.POST['2password']:
-#             # Crear un nuevo usuario
-#             try:
-#                 user = User.objects.create_user(username=usuario, email=email, password=password)
-#                 user.save()
+    carrito, created = Carrito.objects.get_or_create(usuario=request.user)
+    return render(request, 'carrito.html', {'carrito': carrito})
 
-#                 # Guardar el usuario en la base de datos
-#                 usuario = Usuario(name=name, apellido=apellido, email=email, usuario=usuario, password=password)
-#                 usuario.save()
-#             except:
-#                 return render(request, 'registro.html', {'error': 'El usuario ya existe.'})
-    
-#             return redirect('login')  # Redirige a la página de login
-        
-#         else:
-#             # Si las contraseñas no coinciden, muestra un error
-#             return render(request, 'registro.html', {'error': 'Las contraseñas no coinciden.'})
-        
-#     return render(request, 'register.html')
+
+@require_POST
+@login_required
+def agregar_al_carrito(request, producto_id):
+    producto = get_object_or_404(Producto, id=producto_id)
+    carrito, created = Carrito.objects.get_or_create(usuario=request.user)
+
+    item, created = CarritoItem.objects.get_or_create(carrito=carrito, producto=producto)
+    item.cantidad += int(request.POST.get('cantidad', 1))
+    item.save()
+
+    return redirect('carrito')
+
+@require_POST
+@login_required
+def actualizar_item_carrito(request, item_id):
+    item = get_object_or_404(CarritoItem, id=item_id, carrito__usuario=request.user)
+    cantidad = int(request.POST.get('cantidad', 1))
+    if cantidad > 0:
+        item.cantidad = cantidad
+        item.save()
+    else:
+        item.delete()
+    return redirect('carrito')
+
+@require_POST
+@login_required
+def eliminar_item_carrito(request, item_id):
+    item = get_object_or_404(CarritoItem, id=item_id, carrito__usuario=request.user)
+    item.delete()
+    return redirect('carrito')
 
 def register(request):
     if request.method == 'POST':
@@ -98,12 +105,6 @@ def register(request):
         usuario = request.POST['usuario']
         password = request.POST['password']
         confirm_password = request.POST['2password']
-        # print(name)
-        # print(apellido)
-        # print(email)
-        # print(usuario)
-        # print(password)
-        # print(confirm_password)
         
         # Validar que las contraseñas coincidan
         if password != confirm_password:
@@ -121,7 +122,6 @@ def register(request):
             return redirect('login')  # Redirige a la página de login
         except IntegrityError:
             return render(request, 'register.html', {'error': 'Las contraseñas no coinciden.'})
-        
 
     # Si no es un POST, muestra el formulario vacío
     return render(request, 'register.html')
