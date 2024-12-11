@@ -25,7 +25,7 @@
   <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <img src="./media/logo.png" alt="" style="height: 50px; width: 60px" />
+        <img src="./media/logo.png" alt="" style="height: 50px; width: 60px;">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -36,7 +36,7 @@
               <a class="nav-link active" aria-current="page" href="{% url 'home' %}">HOME</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Base de datos</a>
+              <a class="nav-link" href="{% url 'carrito' %}">Terminos y condiciones</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Metodos de pago</a>
@@ -46,8 +46,16 @@
             </li>
           </ul>
           <!-- Botón LOG IN alineado a la derecha -->
-          <div class="ms-auto">
-            <a href="{% url 'login' %}" class="btn" style="background-color: #0a1719; color: white">LOG IN</a>
+          <div class="containerUser ms-auto d-flex align-items-center gap-2">
+            {% if user.is_authenticated %}
+            <a href="{% url 'carrito' %}"><img src="./media/carrito.png" alt="carrito de compras"
+                style="height: 30px; width: 30px"></a>
+            <p style="padding-top: 1rem;" href="#">{{ user.username }}</p>
+            <a href="{% url 'logout' %}" class="btn" style="background-color: #0A1719; color: white;">LOG OUT</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="btn" style="background-color: #0A1719; color: white;">LOG IN</a>
+            {% endif %}
+
           </div>
         </div>
       </div>
@@ -61,84 +69,115 @@
 
   <div class="card-group marginLR">
     <div class="card marginR" style="background-color: transparent">
-        <img src="media/Vampiro.jpg" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem" class="card-text texto">
-            Vampiro
-          </p>
+      <img src="media/Vampiro.jpg" class="card-img-top" alt="..." />
+      <div class="card-body d-flex justify-content-center align-items-center">
+        <div class="containerPrecio">
+          <p>Precio Alquiler:</p>
+          <p>{{ Vampiro.precio_Alquiler }}</p>
+        </div>  
+        <div>
+          <form method="post" action="{% url 'agregar_al_carrito' Vampiro.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="cantidad" value="1"> <!-- Cantidad predeterminada -->
+            <button style="font-size: 1.5rem" class="botonCarrito" type="submit">Vampiro</button>
+          </form>
         </div>
+        <div class="containerPrecio">
+          <p>Precio Compra: </p>
+          <p>{{ Vampiro.precio_Compra}}</p>
+        </div>
+      </div>
     </div>
     <div class="card marginR" style="background-color: transparent">
-        <img src="media/Esqueleto.jpg" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem" class="card-text texto">
-            Esqueleto
-          </p>
-        </div>
+      <img src="media/Esqueleto.jpg" class="card-img-top" alt="..." />
+      <div class="card-body d-flex justify-content-center align-items-center">
+        <form method="post" action="{% url 'agregar_al_carrito' Esqueleto.id %}">
+          {% csrf_token %}
+          <input type="hidden" name="cantidad" value="1"> <!-- Cantidad predeterminada -->
+          <button style="font-size: 1.5rem" class="botonCarrito" type="submit">Esqueleto</button>
+        </form>
+      </div>
     </div>
     <div class="card" style="background-color: transparent">
-        <img src="media/Bruja.jpg" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem" class="card-text texto">
-            Bruja
-          </p>
-        </div>
+      <img src="media/Bruja.jpg" class="card-img-top" alt="..." />
+      <div class="card-body d-flex justify-content-center align-items-center">
+        <form method="post" action="{% url 'agregar_al_carrito' Bruja.id %}">
+          {% csrf_token %}
+          <input type="hidden" name="cantidad" value="1"> <!-- Cantidad predeterminada -->
+          <button style="font-size: 1.5rem" class="botonCarrito" type="submit">Bruja</button>
+        </form>
+      </div>
     </div>
   </div>
 
   <div class="card-group marginLR" style="margin-top: 1%">
     <div class="card marginR" style="background-color: transparent">
-        <img src="media/Zombie.jpg" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem" class="card-text texto">
-            Zombie
-          </p>
-        </div>
+      <img src="media/Zombie.jpg" class="card-img-top" alt="..." />
+      <div class="card-body d-flex justify-content-center align-items-center">
+        <form method="post" action="{% url 'agregar_al_carrito' Zombie.id %}">
+          {% csrf_token %}
+          <input type="hidden" name="cantidad" value="1"> <!-- Cantidad predeterminada -->
+          <button style="font-size: 1.5rem" class="botonCarrito" type="submit">Zombie</button>
+        </form>
+      </div>
     </div>
     <div class="card marginR" style="background-color: transparent">
-        <img src="media/Chucky.jpg" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem" class="card-text texto">
-            Chucky
-          </p>
-        </div>
+      <img src="media/Chucky.jpg" class="card-img-top" alt="..." />
+      <div class="card-body d-flex justify-content-center align-items-center">
+        <form method="post" action="{% url 'agregar_al_carrito' Chucky.id %}">
+          {% csrf_token %}
+          <input type="hidden" name="cantidad" value="1"> <!-- Cantidad predeterminada -->
+          <button style="font-size: 1.5rem" class="botonCarrito" type="submit">Chucky</button>
+        </form>
+      </div>
     </div>
     <div class="card" style="background-color: transparent">
-        <img src="media/Ghostface.jpg" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem" class="card-text texto">
-            Ghostface
-          </p>
-        </div>
+      <img src="media/Ghostface.jpg" class="card-img-top" alt="..." />
+      <div class="card-body d-flex justify-content-center align-items-center">
+        <form method="post" action="{% url 'agregar_al_carrito' Ghostface.id %}">
+          {% csrf_token %}
+          <input type="hidden" name="cantidad" value="1"> <!-- Cantidad predeterminada -->
+          <button style="font-size: 1.5rem" class="botonCarrito" type="submit">Ghostface</button>
+        </form>
+      </div>
     </div>
   </div>
 
   <div class="card-group marginLR" style="margin-top: 1%">
     <div class="card marginR" style="background-color: transparent">
-        <img src="media/Jack_Skellington.jpg" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem" class="card-text texto">
-            Jack Skellington
-          </p>
-        </div>
+      <img src="media/Jack_Skellington.jpg" class="card-img-top" alt="..." />
+      <div class="card-body d-flex justify-content-center align-items-center">
+        <form method="post" action="{% url 'agregar_al_carrito' JackSkellington.id %}">
+          {% csrf_token %}
+          <input type="hidden" name="cantidad" value="1"> <!-- Cantidad predeterminada -->
+          <button style="font-size: 1.5rem" class="botonCarrito" type="submit">Jack Skellington</button>
+        </form>
+      </div>
     </div>
     <div class="card marginR" style="background-color: transparent">
-        <img src="media/Diablillo.jpg" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem" class="card-text texto">
-            Diablillo
-          </p>
-        </div>
+      <img src="media/Diablillo.jpg" class="card-img-top" alt="..." />
+      <div class="card-body d-flex justify-content-center align-items-center">
+        <form method="post" action="{% url 'agregar_al_carrito' Diablillo.id %}">
+          {% csrf_token %}
+          <input type="hidden" name="cantidad" value="1"> <!-- Cantidad predeterminada -->
+          <button style="font-size: 1.5rem" class="botonCarrito" type="submit">Diablillo</button>
+        </form>
+      </div>
     </div>
     <div class="card" style="background-color: transparent">
-        <img src="media/Vampiresa.jpg" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem" class="card-text texto">
-            Vampiresa
-          </p>
-        </div>
+      <img src="media/Vampiresa.jpg" class="card-img-top" alt="..." />
+      <div class="card-body d-flex justify-content-center align-items-center">
+        <form method="post" action="{% url 'agregar_al_carrito' Vampiresa.id %}">
+          {% csrf_token %}
+          <input type="hidden" name="cantidad" value="1"> <!-- Cantidad predeterminada -->
+          <button style="font-size: 1.5rem" class="botonCarrito" type="submit">Vampiresa</button>
+        </form>
+      </div>
     </div>
   </div>
+
+
+
 
   <footer>
     <hr />

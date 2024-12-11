@@ -38,7 +38,7 @@
               <a class="nav-link active" aria-current="page" href="{% url 'home' %}">HOME</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Base de datos</a>
+              <a class="nav-link" href="{% url 'carrito' %}">Terminos y condiciones</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Metodos de pago</a>
@@ -48,8 +48,15 @@
             </li>
           </ul>
           <!-- Botón LOG IN alineado a la derecha -->
-          <div class="ms-auto">
-            <a href="{% url 'login' %}" class="btn" style="background-color: #0A1719; color: white;">LOG IN</a>
+          <div class="containerUser ms-auto d-flex align-items-center gap-2">
+            {% if user.is_authenticated %}
+              <a href="{% url 'carrito' %}"><img src="./media/carrito.png" alt="carrito de compras" style="height: 30px; width: 30px"></a>
+              <p style="padding-top: 1rem;" href="#">{{ user.username }}</p>
+              <a href="{% url 'logout' %}" class="btn" style="background-color: #0A1719; color: white;">LOG OUT</a>
+            {% else %}
+              <a href="{% url 'login' %}" class="btn" style="background-color: #0A1719; color: white;">LOG IN</a>
+            {% endif %}
+            
           </div>
         </div>
       </div>
@@ -62,56 +69,58 @@
 
   <div class="card-group marginLR">
     <div class="card marginR" style="background-color: transparent">
-      
-        <img src="media/Blancanieves.jpg" class="card-img-top" alt="..."/>
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem;" class="card-text texto">Blancanieves</p>
-        </div>
-      
+      <img src="media/Blancanieves.jpg" class="card-img-top" alt="..." />
+      <div class="card-body d-flex justify-content-center align-items-center">
+        <button style="font-size: 1.5rem" class="botonCarrito" data-producto-id="5">
+          Blancanieves
+        </button>
+      </div>
     </div>
     <div class="card marginR" style="background-color: transparent">
-      
-        <img src="media/Tinkerbell.jpg" class="card-img-top" alt="..."/>
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem;" class="card-text texto">Tinkerbell</p>
-        </div>
-      
+      <img src="media/Tinkerbell.jpg" class="card-img-top" alt="..." />
+      <div class="card-body d-flex justify-content-center align-items-center">
+        <button style="font-size: 1.5rem" class="botonCarrito" data-producto-id="9">
+          Tinkerbell
+        </button>
+      </div>
     </div>
     <div class="card" style="background-color: transparent">
-      
-        <img src="media/Reina.jpg" class="card-img-top" alt="..."/>
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem;" class="card-text texto">Reina</p>
-        </div>
-      
+      <img src="media/Reina.jpg" class="card-img-top" alt="..." />
+      <div class="card-body d-flex justify-content-center align-items-center">
+        <button style="font-size: 1.5rem" class="botonCarrito" data-producto-id="14">
+          Reina
+        </button>
+      </div>
     </div>
   </div>
+  
   <div class="card-group marginLR" style="margin-top: 1%;">
     <div class="card marginR" style="background-color: transparent">
-      
-        <img src="media/Bella_Bestia.jpg" class="card-img-top" alt="..."/>
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem;" class="card-text texto">Bella </p>
-        </div>
-      
+      <img src="media/Bella_Bestia.jpg" class="card-img-top" alt="..." />
+      <div class="card-body d-flex justify-content-center align-items-center">
+        <button style="font-size: 1.5rem" class="botonCarrito" data-producto-id="38">
+          Bella
+        </button>
+      </div>
     </div>
     <div class="card marginR" style="background-color: transparent">
-      
-        <img src="media/Hada.jpg" class="card-img-top" alt="..."/>
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem;" class="card-text texto">Hada Madrina</p>
-        </div>
-      
+      <img src="media/Hada.jpg" class="card-img-top" alt="..." />
+      <div class="card-body d-flex justify-content-center align-items-center">
+        <button style="font-size: 1.5rem" class="botonCarrito" data-producto-id="33">
+          Hada Madrina
+        </button>
+      </div>
     </div>
     <div class="card" style="background-color: transparent">
-      
-        <img src="media/Cenicienta.jpg" class="card-img-top" alt="..."/>
-        <div class="card-body">
-          <p style="text-align: center; font-size: 1.5rem;" class="card-text texto">Cenicienta</p>
-        </div>
-      
+      <img src="media/Cenicienta.jpg" class="card-img-top" alt="..." />
+      <div class="card-body d-flex justify-content-center align-items-center">
+        <button style="font-size: 1.5rem" class="botonCarrito" data-producto-id="39">
+          Cenicienta
+        </button>
+      </div>
     </div>
   </div>
+  
 
   <footer>
     <hr>

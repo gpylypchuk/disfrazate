@@ -11,7 +11,10 @@ urlpatterns = [
     path('cosplay', views.pagina_cosplay, name='pagina_cosplay'),  # Página retro
     path('login/', views.login_view, name='login'),
     path('register/', views.register, name='register'),
-    path('carrito', views.carrito, name='carrito'),
+    path('carrito/', views.carrito, name='carrito'),
+    path('carrito/agregar/<int:producto_id>/', views.agregar_al_carrito, name='agregar_al_carrito'),
+    path('carrito/actualizar/<int:item_id>/', views.actualizar_item_carrito, name='actualizar_item_carrito'),
+    path('carrito/eliminar/<int:item_id>/', views.eliminar_item_carrito, name='eliminar_item_carrito'),
     path('logout/', views.logout_view, name='logout'),
 
     # Esto es de prueba se debe adaptar a lo hecho
