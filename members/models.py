@@ -29,3 +29,36 @@ class Producto(models.Model):
 
     def __str__(self):
         return self.nombre
+
+# Carrito
+class Carrito(models.Model):
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name='carrito')
+    creado_en = models.DateTimeField(auto_now_add=True)
+
+    def total_compra(self):
+        total = 0
+        for item in self.items.all():
+            if item.es_alquiler:
+                total += item.total_precio_alquiler()
+            else:
+                total += item.total_precio_compra()
+        return total
+
+    def __str__(self):
+        return f"Carrito de {self.usuario.username}"
+
+
+class CarritoItem(models.Model):
+    carrito = models.ForeignKey(Carrito, related_name='items', on_delete=models.CASCADE)
+    producto = models.ForeignKey('Producto', on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField(default=1)
+    es_alquiler = models.BooleanField(default=False)
+
+    def total_precio_compra(self):
+        return self.producto.precio_Compra * self.cantidad
+
+    def total_precio_alquiler(self):
+        return self.producto.precio_Alquiler * self.cantidad
+
+    def __str__(self):
+        return f"{self.cantidad} x {self.producto.nombre}"

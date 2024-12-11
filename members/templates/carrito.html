@@ -63,7 +63,66 @@
     </header>
 
     <div class="containerCarrito">
-        <div class="carrito">hoal</div>
+        <div class="carrito">
+            <h1 style="text-align: center; margin: 1rem;">Tu Carrito</h1>
+      <table style="margin: auto;">
+          <thead>
+              <tr>
+                  <th>Producto</th>
+                  <th>Cantidad</th>
+                  <th>Precio Unitario</th>
+                  <th>Total</th>
+                  <th>Acciones</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for item in carrito.items.all %}
+              <tr>
+                  <td>{{ item.producto.nombre }}</td>
+                  <td>
+                      <form method="post" action="{% url 'actualizar_item_carrito' item.id %}">
+                          {% csrf_token %}
+                          <input type="number" name="cantidad" value="{{ item.cantidad }}" min="1">
+                          <button type="submit">Actualizar</button>
+                      </form>
+                  </td>
+                  <td>
+                      {% if item.es_alquiler %}
+                          ${{ item.producto.precio_Alquiler }}
+                      {% else %}
+                          ${{ item.producto.precio_Compra }}
+                      {% endif %}
+                  </td>
+                  <td>
+                      {% if item.es_alquiler %}
+                          ${{ item.total_precio_alquiler }}
+                      {% else %}
+                          ${{ item.total_precio_compra }}
+                      {% endif %}
+                  </td>
+                  <td>
+                      <form method="post" action="{% url 'alternar_alquiler_compra' item.id %}" style="margin-bottom: 0.5rem;">
+                          {% csrf_token %}
+                          <button type="submit">
+                              {% if item.es_alquiler %}
+                                  Cambiar a Compra
+                              {% else %}
+                                  Cambiar a Alquiler
+                              {% endif %}
+                          </button>
+                      </form>
+                      <form method="post" action="{% url 'eliminar_item_carrito' item.id %}">
+                          {% csrf_token %}
+                          <button type="submit">Eliminar</button>
+                      </form>
+                  </td>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+      <h3 style="text-align: center; margin: 2rem;">Total: ${{ carrito.total_compra }}</h3>
+        </div>
+
         <div class="tarjeta">
             <form class="formPagar">
                 <!-- Campo de nombre -->
