@@ -102,14 +102,14 @@
       <div style="display: flex; align-items: flex-start; width: 100%; height: 4rem;">
         <div style="display: flex; flex-direction: column; align-items: flex-start; padding-left: 10px;">
           <div>
-            <p style="font-weight: 600;">Precio compra: ${{ Vampiresa.precio_Compra }}</p>
+            <p style="font-weight: 600;">Precio compra: ${{ Esqueleto.precio_Compra }}</p>
           </div>
           <div>
-            <p style="font-weight: 600;">Precio alquiler: ${{ Vampiresa.precio_Alquiler }}</p>
+            <p style="font-weight: 600;">Precio alquiler: ${{ Esqueleto.precio_Alquiler }}</p>
           </div>
         </div>
         <div style="display: flex; justify-content: center; align-items: center; height: 100%; width:50%;">
-          <form method="post" action="{% url 'agregar_al_carrito' Vampiro.id %}">
+          <form method="post" action="{% url 'agregar_al_carrito' Esqueleto.id %}">
             {% csrf_token %}
             <input type="hidden" name="cantidad" value="1">
             <button type="submit" style="font-size: 1.2rem" class="botonCarrito">
@@ -128,14 +128,14 @@
       <div style="display: flex; align-items: flex-start; width: 100%; height: 4rem;">
         <div style="display: flex; flex-direction: column; align-items: flex-start; padding-left: 10px;">
           <div>
-            <p style="font-weight: 600;">Precio compra: ${{ Vampiresa.precio_Compra }}</p>
+            <p style="font-weight: 600;">Precio compra: ${{ Bruja.precio_Compra }}</p>
           </div>
           <div>
-            <p style="font-weight: 600;">Precio alquiler: ${{ Vampiresa.precio_Alquiler }}</p>
+            <p style="font-weight: 600;">Precio alquiler: ${{ Bruja.precio_Alquiler }}</p>
           </div>
         </div>
         <div style="display: flex; justify-content: center; align-items: center; height: 100%; width:50%;">
-          <form method="post" action="{% url 'agregar_al_carrito' Vampiro.id %}">
+          <form method="post" action="{% url 'agregar_al_carrito' Bruja.id %}">
             {% csrf_token %}
             <input type="hidden" name="cantidad" value="1">
             <button type="submit" style="font-size: 1.2rem" class="botonCarrito">
@@ -155,14 +155,14 @@
       <div style="display: flex; align-items: flex-start; width: 100%; height: 4rem;">
         <div style="display: flex; flex-direction: column; align-items: flex-start; padding-left: 10px;">
           <div>
-            <p style="font-weight: 600;">Precio compra: ${{ Vampiresa.precio_Compra }}</p>
+            <p style="font-weight: 600;">Precio compra: ${{ Zombie.precio_Compra }}</p>
           </div>
           <div>
-            <p style="font-weight: 600;">Precio alquiler: ${{ Vampiresa.precio_Alquiler }}</p>
+            <p style="font-weight: 600;">Precio alquiler: ${{ Zombie.precio_Alquiler }}</p>
           </div>
         </div>
         <div style="display: flex; justify-content: center; align-items: center; height: 100%; width:50%;">
-          <form method="post" action="{% url 'agregar_al_carrito' Vampiro.id %}">
+          <form method="post" action="{% url 'agregar_al_carrito' Zombie.id %}">
             {% csrf_token %}
             <input type="hidden" name="cantidad" value="1">
             <button type="submit" style="font-size: 1.2rem" class="botonCarrito">
@@ -181,14 +181,14 @@
       <div style="display: flex; align-items: flex-start; width: 100%; height: 4rem;">
         <div style="display: flex; flex-direction: column; align-items: flex-start; padding-left: 10px;">
           <div>
-            <p style="font-weight: 600;">Precio compra: ${{ Vampiresa.precio_Compra }}</p>
+            <p style="font-weight: 600;">Precio compra: ${{ Chucky.precio_Compra }}</p>
           </div>
           <div>
-            <p style="font-weight: 600;">Precio alquiler: ${{ Vampiresa.precio_Alquiler }}</p>
+            <p style="font-weight: 600;">Precio alquiler: ${{ Chucky.precio_Alquiler }}</p>
           </div>
         </div>
         <div style="display: flex; justify-content: center; align-items: center; height: 100%; width:50%;">
-          <form method="post" action="{% url 'agregar_al_carrito' Vampiro.id %}">
+          <form method="post" action="{% url 'agregar_al_carrito' Chucky.id %}">
             {% csrf_token %}
             <input type="hidden" name="cantidad" value="1">
             <button type="submit" style="font-size: 1.2rem" class="botonCarrito">
@@ -207,14 +207,14 @@
       <div style="display: flex; align-items: flex-start; width: 100%; height: 4rem;">
         <div style="display: flex; flex-direction: column; align-items: flex-start; padding-left: 10px;">
           <div>
-            <p style="font-weight: 600;">Precio compra: ${{ Vampiresa.precio_Compra }}</p>
+            <p style="font-weight: 600;">Precio compra: ${{ Ghostface.precio_Compra }}</p>
           </div>
           <div>
-            <p style="font-weight: 600;">Precio alquiler: ${{ Vampiresa.precio_Alquiler }}</p>
+            <p style="font-weight: 600;">Precio alquiler: ${{ Ghostface.precio_Alquiler }}</p>
           </div>
         </div>
         <div style="display: flex; justify-content: center; align-items: center; height: 100%; width:50%;">
-          <form method="post" action="{% url 'agregar_al_carrito' Vampiro.id %}">
+          <form method="post" action="{% url 'agregar_al_carrito' Ghostface.id %}">
             {% csrf_token %}
             <input type="hidden" name="cantidad" value="1">
             <button type="submit" style="font-size: 1.2rem" class="botonCarrito">
@@ -235,14 +235,14 @@
       <div style="display: flex; align-items: flex-start; width: 100%; height: 4rem;">
         <div style="display: flex; flex-direction: column; align-items: flex-start; padding-left: 10px;">
           <div>
-            <p style="font-weight: 600;">Precio compra: ${{ Vampiresa.precio_Compra }}</p>
+            <p style="font-weight: 600;">Precio compra: ${{ JackSkellington.precio_Compra }}</p>
           </div>
           <div>
-            <p style="font-weight: 600;">Precio alquiler: ${{ Vampiresa.precio_Alquiler }}</p>
+            <p style="font-weight: 600;">Precio alquiler: ${{ JackSkellington.precio_Alquiler }}</p>
           </div>
         </div>
         <div style="display: flex; justify-content: center; align-items: center; height: 100%; width:50%;">
-          <form method="post" action="{% url 'agregar_al_carrito' Vampiro.id %}">
+          <form method="post" action="{% url 'agregar_al_carrito' JackSkellington.id %}">
             {% csrf_token %}
             <input type="hidden" name="cantidad" value="1">
             <button type="submit" style="font-size: 1.2rem" class="botonCarrito">
@@ -261,14 +261,14 @@
       <div style="display: flex; align-items: flex-start; width: 100%; height: 4rem;">
         <div style="display: flex; flex-direction: column; align-items: flex-start; padding-left: 10px;">
           <div>
-            <p style="font-weight: 600;">Precio compra: ${{ Vampiresa.precio_Compra }}</p>
+            <p style="font-weight: 600;">Precio compra: ${{ Diablillo.precio_Compra }}</p>
           </div>
           <div>
-            <p style="font-weight: 600;">Precio alquiler: ${{ Vampiresa.precio_Alquiler }}</p>
+            <p style="font-weight: 600;">Precio alquiler: ${{ Diablillo.precio_Alquiler }}</p>
           </div>
         </div>
         <div style="display: flex; justify-content: center; align-items: center; height: 100%; width:50%;">
-          <form method="post" action="{% url 'agregar_al_carrito' Vampiro.id %}">
+          <form method="post" action="{% url 'agregar_al_carrito' Diablillo.id %}">
             {% csrf_token %}
             <input type="hidden" name="cantidad" value="1">
             <button type="submit" style="font-size: 1.2rem" class="botonCarrito">
@@ -294,7 +294,7 @@
           </div>
         </div>
         <div style="display: flex; justify-content: center; align-items: center; height: 100%; width:50%;">
-          <form method="post" action="{% url 'agregar_al_carrito' Vampiro.id %}">
+          <form method="post" action="{% url 'agregar_al_carrito' Vampiresa.id %}">
             {% csrf_token %}
             <input type="hidden" name="cantidad" value="1">
             <button type="submit" style="font-size: 1.2rem" class="botonCarrito">

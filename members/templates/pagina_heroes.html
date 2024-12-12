@@ -71,19 +71,19 @@
       <div class="card marginR" style="background-color: transparent">
         <img src="media/Superman.jpg" class="card-img-top" alt="..." />
         <div class="card-img-overlay">
-          <p class="tituloCard">Vampiresa</p>
+          <p class="tituloCard">Superman</p>
         </div>
         <div style="display: flex; align-items: flex-start; width: 100%; height: 4rem;">
           <div style="display: flex; flex-direction: column; align-items: flex-start; padding-left: 10px;">
             <div>
-              <p style="font-weight: 600;">Precio compra: ${{ Vampiro.precio_Compra }}</p>
+              <p style="font-weight: 600;">Precio compra: ${{ Superman.precio_Compra }}</p>
             </div>
             <div>
-              <p style="font-weight: 600;">Precio alquiler: ${{ Vampiro.precio_Alquiler }}</p>
+              <p style="font-weight: 600;">Precio alquiler: ${{ Superman.precio_Alquiler }}</p>
             </div>
           </div>
           <div style="display: flex; justify-content: center; align-items: center; height: 100%; width:50%;">
-            <form method="post" action="{% url 'agregar_al_carrito' Vampiro.id %}">
+            <form method="post" action="{% url 'agregar_al_carrito' Superman.id %}">
               {% csrf_token %}
               <input type="hidden" name="cantidad" value="1">
               <button type="submit" style="font-size: 1.2rem" class="botonCarrito">
@@ -96,19 +96,19 @@
       <div class="card marginR" style="background-color: transparent">
         <img src="media/Capitan_America.jpg" class="card-img-top" alt="..." />
         <div class="card-img-overlay">
-          <p class="tituloCard">Vampiresa</p>
+          <p class="tituloCard">Capitan America</p>
         </div>
         <div style="display: flex; align-items: flex-start; width: 100%; height: 4rem;">
           <div style="display: flex; flex-direction: column; align-items: flex-start; padding-left: 10px;">
             <div>
-              <p style="font-weight: 600;">Precio compra: ${{ Vampiro.precio_Compra }}</p>
+              <p style="font-weight: 600;">Precio compra: ${{ CapitanAmerica.precio_Compra }}</p>
             </div>
             <div>
-              <p style="font-weight: 600;">Precio alquiler: ${{ Vampiro.precio_Alquiler }}</p>
+              <p style="font-weight: 600;">Precio alquiler: ${{ CapitanAmerica.precio_Alquiler }}</p>
             </div>
           </div>
           <div style="display: flex; justify-content: center; align-items: center; height: 100%; width:50%;">
-            <form method="post" action="{% url 'agregar_al_carrito' Vampiro.id %}">
+            <form method="post" action="{% url 'agregar_al_carrito' CapitanAmerica.id %}">
               {% csrf_token %}
               <input type="hidden" name="cantidad" value="1">
               <button type="submit" style="font-size: 1.2rem" class="botonCarrito">
@@ -121,15 +121,15 @@
       <div class="card" style="background-color: transparent">
         <img src="media/Ironman.jpg" class="card-img-top" alt="..." />
         <div class="card-img-overlay">
-          <p class="tituloCard">Vampiresa</p>
+          <p class="tituloCard">Ironman</p>
         </div>
         <div style="display: flex; align-items: flex-start; width: 100%; height: 4rem;">
           <div style="display: flex; flex-direction: column; align-items: flex-start; padding-left: 10px;">
             <div>
-              <p style="font-weight: 600;">Precio compra: ${{ Vampiro.precio_Compra }}</p>
+              <p style="font-weight: 600;">Precio compra: ${{ Ironman.precio_Compra }}</p>
             </div>
             <div>
-              <p style="font-weight: 600;">Precio alquiler: ${{ Vampiro.precio_Alquiler }}</p>
+              <p style="font-weight: 600;">Precio alquiler: ${{ Ironman.precio_Alquiler }}</p>
             </div>
           </div>
           <div style="display: flex; justify-content: center; align-items: center; height: 100%; width:50%;">
@@ -149,19 +149,19 @@
       <div class="card marginR" style="background-color: transparent">
         <img src="media/Spiderman.jpg" class="card-img-top" alt="..." />
         <div class="card-img-overlay">
-          <p class="tituloCard">Vampiresa</p>
+          <p class="tituloCard">Spiderman</p>
         </div>
         <div style="display: flex; align-items: flex-start; width: 100%; height: 4rem;">
           <div style="display: flex; flex-direction: column; align-items: flex-start; padding-left: 10px;">
             <div>
-              <p style="font-weight: 600;">Precio compra: ${{ Vampiro.precio_Compra }}</p>
+              <p style="font-weight: 600;">Precio compra: ${{ Spiderman.precio_Compra }}</p>
             </div>
             <div>
-              <p style="font-weight: 600;">Precio alquiler: ${{ Vampiro.precio_Alquiler }}</p>
+              <p style="font-weight: 600;">Precio alquiler: ${{ Spiderman.precio_Alquiler }}</p>
             </div>
           </div>
           <div style="display: flex; justify-content: center; align-items: center; height: 100%; width:50%;">
-            <form method="post" action="{% url 'agregar_al_carrito' Vampiro.id %}">
+            <form method="post" action="{% url 'agregar_al_carrito' Spiderman.id %}">
               {% csrf_token %}
               <input type="hidden" name="cantidad" value="1">
               <button type="submit" style="font-size: 1.2rem" class="botonCarrito">
@@ -174,19 +174,19 @@
       <div class="card marginR" style="background-color: transparent">
         <img src="media/Thor.jpg" class="card-img-top" alt="..." />
         <div class="card-img-overlay">
-          <p class="tituloCard">Vampiresa</p>
+          <p class="tituloCard">Thor</p>
         </div>
         <div style="display: flex; align-items: flex-start; width: 100%; height: 4rem;">
           <div style="display: flex; flex-direction: column; align-items: flex-start; padding-left: 10px;">
             <div>
-              <p style="font-weight: 600;">Precio compra: ${{ Vampiro.precio_Compra }}</p>
+              <p style="font-weight: 600;">Precio compra: ${{ Thor.precio_Compra }}</p>
             </div>
             <div>
-              <p style="font-weight: 600;">Precio alquiler: ${{ Vampiro.precio_Alquiler }}</p>
+              <p style="font-weight: 600;">Precio alquiler: ${{ Thor.precio_Alquiler }}</p>
             </div>
           </div>
           <div style="display: flex; justify-content: center; align-items: center; height: 100%; width:50%;">
-            <form method="post" action="{% url 'agregar_al_carrito' Vampiro.id %}">
+            <form method="post" action="{% url 'agregar_al_carrito' Thor.id %}">
               {% csrf_token %}
               <input type="hidden" name="cantidad" value="1">
               <button type="submit" style="font-size: 1.2rem" class="botonCarrito">
@@ -199,15 +199,15 @@
       <div class="card" style="background-color: transparent">
         <img src="media/Batman.jpg" class="card-img-top" alt="..." />
         <div class="card-img-overlay">
-          <p class="tituloCard">Vampiresa</p>
+          <p class="tituloCard">Batman</p>
         </div>
         <div style="display: flex; align-items: flex-start; width: 100%; height: 4rem;">
           <div style="display: flex; flex-direction: column; align-items: flex-start; padding-left: 10px;">
             <div>
-              <p style="font-weight: 600;">Precio compra: ${{ Vampiro.precio_Compra }}</p>
+              <p style="font-weight: 600;">Precio compra: ${{ Batman.precio_Compra }}</p>
             </div>
             <div>
-              <p style="font-weight: 600;">Precio alquiler: ${{ Vampiro.precio_Alquiler }}</p>
+              <p style="font-weight: 600;">Precio alquiler: ${{ Batman.precio_Alquiler }}</p>
             </div>
           </div>
           <div style="display: flex; justify-content: center; align-items: center; height: 100%; width:50%;">
@@ -222,8 +222,6 @@
         </div>
       </div>
     </div>
-
-    
     
 
     <footer>
