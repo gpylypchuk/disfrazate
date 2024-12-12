@@ -154,8 +154,16 @@ def agregar_al_carrito(request, producto_id):
     producto = get_object_or_404(Producto, id=producto_id)
     carrito, created = Carrito.objects.get_or_create(usuario=request.user)
 
+    # Intentar obtener o crear el item en el carrito
     item, created = CarritoItem.objects.get_or_create(carrito=carrito, producto=producto)
-    item.cantidad += int(request.POST.get('cantidad', 1))
+
+    # Si el item es nuevo, establecer la cantidad directamente
+    if created:
+        item.cantidad = int(request.POST.get('cantidad', 1))
+    else:
+        # Si ya existe, incrementar la cantidad
+        item.cantidad += int(request.POST.get('cantidad', 1))
+
     item.save()
 
     return redirect('carrito')
@@ -219,7 +227,7 @@ def comprar(request):
 
         # Solo se agrega un mensaje de éxito si todo se procesa correctamente
         messages.success(request, '¡Compra realizada con éxito! Gracias por tu compra.')
-        return redirect('catalogo')  # Redirige al catálogo o a la página principal
+        return redirect('carrito')  # Redirige al catálogo o a la página principal
     except Exception as e:
         # Solo se agrega un mensaje de error si hay un fallo
         messages.error(request, 'Ocurrió un error al procesar tu compra. Inténtalo nuevamente.')
