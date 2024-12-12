@@ -133,7 +133,7 @@
             </div>
           </div>
           <div style="display: flex; justify-content: center; align-items: center; height: 100%; width:50%;">
-            <form method="post" action="{% url 'agregar_al_carrito' Vampiro.id %}">
+            <form method="post" action="{% url 'agregar_al_carrito' Ironman.id %}">
               {% csrf_token %}
               <input type="hidden" name="cantidad" value="1">
               <button type="submit" style="font-size: 1.2rem" class="botonCarrito">
@@ -211,7 +211,7 @@
             </div>
           </div>
           <div style="display: flex; justify-content: center; align-items: center; height: 100%; width:50%;">
-            <form method="post" action="{% url 'agregar_al_carrito' Vampiro.id %}">
+            <form method="post" action="{% url 'agregar_al_carrito' Batman.id %}">
               {% csrf_token %}
               <input type="hidden" name="cantidad" value="1">
               <button type="submit" style="font-size: 1.2rem" class="botonCarrito">

@@ -199,19 +199,19 @@
     <div class="card" style="background-color: transparent">
       <img src="media/Cenicienta.jpg" class="card-img-top" alt="..." />
       <div class="card-img-overlay">
-        <p class="tituloCard">Vampiresa</p>
+        <p class="tituloCard">Cenicienta</p>
       </div>
       <div style="display: flex; align-items: flex-start; width: 100%; height: 4rem;">
         <div style="display: flex; flex-direction: column; align-items: flex-start; padding-left: 10px;">
           <div>
-            <p style="font-weight: 600;">Precio compra: ${{ Vampiro.precio_Compra }}</p>
+            <p style="font-weight: 600;">Precio compra: ${{ Cenicienta.precio_Compra }}</p>
           </div>
           <div>
-            <p style="font-weight: 600;">Precio alquiler: ${{ Vampiro.precio_Alquiler }}</p>
+            <p style="font-weight: 600;">Precio alquiler: ${{ Cenicienta.precio_Alquiler }}</p>
           </div>
         </div>
         <div style="display: flex; justify-content: center; align-items: center; height: 100%; width:50%;">
-          <form method="post" action="{% url 'agregar_al_carrito' Vampiro.id %}">
+          <form method="post" action="{% url 'agregar_al_carrito' Cenicienta.id %}">
             {% csrf_token %}
             <input type="hidden" name="cantidad" value="1">
             <button type="submit" style="font-size: 1.2rem" class="botonCarrito">
