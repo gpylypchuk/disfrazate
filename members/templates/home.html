@@ -37,10 +37,7 @@
               <a class="nav-link active" aria-current="page" href="{% url 'home' %}">HOME</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'carrito' %}">Terminos y condiciones</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Metodos de pago</a>
+              <a class="nav-link disabled" href="#">Proximamente</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" aria-disabled="true">NO SE ACEPTAN DEVOLUCIONES</a>
@@ -55,18 +52,11 @@
             {% else %}
               <a href="{% url 'login' %}" class="btn" style="background-color: #0A1719; color: white;">LOG IN</a>
             {% endif %}
-            
           </div>
         </div>
       </div>
     </nav>
   </header>
-
-  <!-- <p>Tu nombre de usuario es: {{ user.username }}. OK?</p>
-  <p>¿Autenticado?: {{ user.is_authenticated }}</p>
-  <p>Nombre de usuario: {{ user.username }}</p>
-  <p>Email: {{ user.email }}</p>
-  <p>ID del usuario: {{ user.id }}</p> -->
 
   <div class="container">
     <img src="./media/logo.png" alt="" style="max-width: 100%; max-height: 100%; transform: scale(0.9) ">

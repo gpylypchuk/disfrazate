@@ -188,6 +188,11 @@ def alternar_alquiler_compra(request, item_id):
     item.save()
     return redirect('carrito')
 
+@login_required
+def comprar(request, carrito):
+    
+    return
+
 
 def register(request):
     if request.method == 'POST':
