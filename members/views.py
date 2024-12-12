@@ -53,7 +53,7 @@ def pagina_navidad(request):
         'MamaNoel': producto3,
         'Elfa': producto4,
         'Grinch': producto5,
-        'AngeldeNavidad': producto6,
+        'Angel': producto6,
         })
 
 # Vista para la página de retro
