@@ -20,7 +20,7 @@ Seguí estos pasos para configurar y ejecutar el proyecto en tu máquina local:
 ```bash
 git clone https://github.com/gpylypchuk/disfrazate.git
 cd disfrazate
-git checkout master
+git checkout master2
 ```
 
 ### 2️⃣ Crea un entorno virtual para gestionar las dependencias.
