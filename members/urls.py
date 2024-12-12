@@ -16,6 +16,7 @@ urlpatterns = [
     path('carrito/actualizar/<int:item_id>/', views.actualizar_item_carrito, name='actualizar_item_carrito'),
     path('carrito/eliminar/<int:item_id>/', views.eliminar_item_carrito, name='eliminar_item_carrito'),
     path('carrito/alternar/<int:item_id>/', views.alternar_alquiler_compra, name='alternar_alquiler_compra'),
+    path('comprar/', views.comprar, name='comprar'),
     path('logout/', views.logout_view, name='logout'),
 
     # Esto es de prueba se debe adaptar a lo hecho

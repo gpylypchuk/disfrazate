@@ -1,14 +1,13 @@
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Usuario, Producto, Carrito, CarritoItem
 from django.views.decorators.http import require_POST
-from django.shortcuts import get_object_or_404
 from django.contrib.auth import logout
 from django.db import IntegrityError
-
+from django.db import transaction
 
 # Vista para la página principal
 def home(request):
@@ -188,10 +187,44 @@ def alternar_alquiler_compra(request, item_id):
     item.save()
     return redirect('carrito')
 
+@require_POST
 @login_required
-def comprar(request, carrito):
-    
-    return
+def comprar(request):
+    # Obtener el carrito del usuario
+    carrito = get_object_or_404(Carrito, usuario=request.user)
+    items = CarritoItem.objects.filter(carrito=carrito)
+
+    if not items.exists():
+        messages.error(request, 'El carrito está vacío.')
+        return redirect('carrito')
+
+    try:
+        # Transacción para garantizar la consistencia
+        with transaction.atomic():
+            # Procesar cada producto en el carrito
+            for item in items:
+                producto = item.producto
+
+                # Verificar stock
+                if producto.stock < item.cantidad:
+                    messages.error(request, f"No hay suficiente stock para {producto.nombre}.")
+                    return redirect('carrito')
+
+                # Reducir el stock del producto
+                producto.stock -= item.cantidad
+                producto.save()
+
+            # Vaciar el carrito
+            items.delete()
+
+        # Solo se agrega un mensaje de éxito si todo se procesa correctamente
+        messages.success(request, '¡Compra realizada con éxito! Gracias por tu compra.')
+        return redirect('catalogo')  # Redirige al catálogo o a la página principal
+    except Exception as e:
+        # Solo se agrega un mensaje de error si hay un fallo
+        messages.error(request, 'Ocurrió un error al procesar tu compra. Inténtalo nuevamente.')
+        return redirect('carrito')
+
 
 
 def register(request):
@@ -206,7 +239,8 @@ def register(request):
 
         # Validar que las contraseñas coincidan
         if password != confirm_password:
-            return render(request, 'register.html', {'error': 'Las contraseñas no coinciden.'})
+            messages.error(request, 'Las contraseñas no coinciden.')
+            return render(request, 'register.html')
         
         try:
             # Crear un nuevo usuario
@@ -219,11 +253,11 @@ def register(request):
 
             return redirect('login')  # Redirige a la página de login
         except IntegrityError:
-            return render(request, 'register.html', {'error': 'Las contraseñas no coinciden.'})
-        
-
-    # Si no es un POST, muestra el formulario vacío
+            messages.error(request, 'El usuario ya existe o los datos son inválidos.')
+            return render(request, 'register.html')
+    
     return render(request, 'register.html')
+
 
 def listar_usuarios(request):
     # Obtén todos los usuarios de la base de datos
